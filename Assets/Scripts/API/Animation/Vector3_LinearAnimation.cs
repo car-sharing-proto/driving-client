@@ -8,12 +8,6 @@ namespace Core.Animation
     {
         private static readonly float eps = 0.0001f;
 
-        public Vector3_LinearAnimation(Action<Vector3> applyStateAction, 
-            Action onAnimationCompleteAction) 
-            : base(applyStateAction, onAnimationCompleteAction)
-        {
-        }
-
         public Vector3_LinearAnimation(Vector3 start, Vector3 end, float speed,
             Action<Vector3> applyStateAction, Action onAnimationCompleteAction)
             : base(start, end, speed, applyStateAction, onAnimationCompleteAction)

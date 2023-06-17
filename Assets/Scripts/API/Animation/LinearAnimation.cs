@@ -14,13 +14,6 @@ namespace Core.Animation
         protected readonly T _end;
         protected readonly float _speed;
 
-        public LinearAnimation(Action<T> applyStateAction, 
-            Action onAnimationCompleteAction) 
-        {
-            this._applyStateAction = applyStateAction;
-            this._onAnimationCompleteAction = onAnimationCompleteAction;
-        }
-
         public LinearAnimation(T start, T end, float speed, Action<T> applyStateAction,
            Action onAnimationCompleteAction)
         {
