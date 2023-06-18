@@ -16,9 +16,10 @@ public class ClientIO : MonoBehaviour
         _viewProbeHolders = new()
         {
             new ViewProbe<IFunctional>(_userController.PlayerMovement, 
-                3f, probe => probe.Interact()),
+                3f, probe => probe.Interact(),
+                (probe, player) => probe.IsInteractable),
             new ViewProbe<Seat>(_userController.PlayerMovement, 
-                1.5f, probe => probe.Take(_userController),
+                2f, probe => probe.Take(_userController),
                 (probe, player) => !probe.IsTaken && !player.IsSitting),
         };
 
@@ -37,13 +38,13 @@ public class ClientIO : MonoBehaviour
 
         foreach (var holder in _viewProbeHolders)
         {
-            if (holder.CheckCondition())
+            var mode = Input.GetKeyUp(KeyCode.E) ? 
+                ViewProbeHolder.QueryMode.INTERACT :
+                ViewProbeHolder.QueryMode.CHECK;
+
+            if (holder.CheckCondition(mode))
             {
                 _cursor.SetActive(true);
-            }
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                holder.TakeProbeAndDoAction();
             }
         }
     }

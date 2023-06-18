@@ -17,6 +17,8 @@ namespace Core.Car
         private Animation.Vector3_LinearAnimation _openAnimation;
         private Animation.Vector3_LinearAnimation _closeAnimation;
 
+        public bool IsInteractable => State is OpenState.OPEN or OpenState.CLOSED;
+
         private void Start()
         {
             State = OpenState.CLOSED;

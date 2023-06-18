@@ -2,8 +2,13 @@ using Core.Player;
 
 public abstract class ViewProbeHolder
 {
-    public abstract void TakeProbeAndDoAction();
-    public abstract bool CheckCondition();
+    public enum QueryMode
+    {
+        CHECK,
+        INTERACT,
+    }
+
+    public abstract bool CheckCondition(QueryMode mode);
 }
 public class ViewProbe<T> : ViewProbeHolder where T : class
 {
@@ -23,25 +28,25 @@ public class ViewProbe<T> : ViewProbeHolder where T : class
         this._raycaster = new Raycaster(player.HeadTransform, rayLength);
     }
 
-    public override void TakeProbeAndDoAction()
+    public override bool CheckCondition(QueryMode mode)
     {
         var probe = _raycaster.CheckHit<T>();
 
-        if (probe != null)
+        if (probe == null)
+        {
+            return false;
+        }
+
+        if (_condition != null && !_condition(probe, _player))
+        {
+            return false;
+        }
+
+        if (mode == QueryMode.INTERACT)
         {
             _action(probe);
         }
-    }
 
-    public override bool CheckCondition()
-    {
-        var probe = _raycaster.CheckHit<T>();
-
-        if (probe != null)
-        {
-            return _condition == null || _condition(probe, _player);
-        }
-
-        return false;
+        return true;
     }
 }
