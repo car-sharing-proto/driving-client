@@ -5,10 +5,12 @@ public class ClientIO : MonoBehaviour
 {
     [SerializeField] private Door _door;
     [SerializeField] private Transform _head;
-
     [SerializeField] private GameObject _cursor;
+    [SerializeField] private UserController _userController;
 
     private Raycaster _raycaster;
+
+    private bool _isPause = false;
 
     private void Start()
     {
@@ -27,9 +29,18 @@ public class ClientIO : MonoBehaviour
 
         _cursor.SetActive(interactable != null);
 
+        var seat = _raycaster.CheckHit<Seat>();
+        if (seat != null && !seat.IsTaken && Input.GetKeyUp(KeyCode.F))
+        {
+            seat.Take(_userController);
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            MouseController.SwitchState();
+            _isPause = !_isPause;
+
+            MouseController.SetVisibility(_isPause);
+            _userController.SetMoveAbility(!_isPause);
         }
     }
 }

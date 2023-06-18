@@ -11,6 +11,7 @@ namespace Core.Car
             IS_OPENING,
             IS_CLOSING
         }
+
         public Vector3 StartAngle { get; }
         public Vector3 EndAngle { get; }
         public OpenState State { get; }

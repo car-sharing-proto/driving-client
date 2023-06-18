@@ -22,17 +22,15 @@ namespace Core.Player
 
         private Movement _horizontalMovement = Movement.NONE;
         private Movement _verticalMovement = Movement.NONE;
-        private bool _isRuning = false;
+        private bool _isRunning = false;
         private bool _isJumping = false;
+        private bool _isSeating = false;
 
-        private PlayerController _controller;
         private CharacterController _characterController;
 
         private Vector3 _rotationDelta = Vector3.zero;
         private Vector3 _velocityPlanar = Vector3.zero;
         private float _velocityVertical = 0f;
-
-        public void SetController(PlayerController controller) => _controller = controller;
 
         private void Awake()
         {
@@ -41,13 +39,52 @@ namespace Core.Player
 
         private void Update()
         {
-            UpdateInput();
             UpdateView();
+
+            _characterController.enabled = !_isSeating;
         }
+
         private void FixedUpdate()
         {
+            if (_isSeating)
+            {
+                return;
+            }
+
             UpdateMove();
             CalculateVelocity();
+        }
+
+        public void UpdateInput(
+           Movement horizontalMovement,
+           Movement verticalMovement,
+           bool isRunning,
+           bool isJumping,
+           bool isSeating,
+           Vector3 rotationDelta)
+        {
+            _isSeating = isSeating;
+            _horizontalMovement = horizontalMovement;
+            _verticalMovement = verticalMovement;
+            _isRunning = isRunning;
+            _isJumping = isJumping;
+            _rotationDelta += rotationDelta;
+        }
+
+        public void SetParent(Transform parentTransform)
+        {
+            _characterController.transform.SetParent(parentTransform);
+            _characterController.transform.localPosition = Vector3.zero;
+        }
+
+        public void RemoveParent()
+        {
+            _characterController.transform.SetParent(null);
+        }
+
+        public void Translate(Vector3 position)
+        {
+            _characterController.transform.position = position;
         }
 
         private void UpdateView()
@@ -57,21 +94,10 @@ namespace Core.Player
             transform.eulerAngles = new Vector3(0, _rotationDelta.x);
         }
 
-        private void UpdateInput()
-        {
-            if (!_controller) return;
-
-            _horizontalMovement = _controller.HorizontalMovement;
-            _verticalMovement = _controller.VerticalMovement;
-            _isRuning = _controller.IsRuning;
-            _isJumping = _controller.IsJumping;
-            _rotationDelta += _controller.RotationDelta;
-        }
-
         private void CalculateVelocity()
         {
             var isGrounded = IsGrounded();
-            var runMultiplier = _isRuning ? _runMultiplier : 1f;
+            var runMultiplier = _isRunning ? _runMultiplier : 1f;
             var decreaseAcceleration = isGrounded ? Physics.Resistance.Ground : Physics.Resistance.Air;
 
             _velocityPlanar += (int)_horizontalMovement * runMultiplier *
@@ -80,7 +106,7 @@ namespace Core.Player
             _velocityPlanar += (int)_verticalMovement * runMultiplier *
                 _acceleration * Time.fixedDeltaTime * transform.forward;
 
-            PlanarCeil(ref _velocityPlanar, _isRuning ? _maxSpeed * runMultiplier : _maxSpeed);
+            PlanarCeil(ref _velocityPlanar, _isRunning ? _maxSpeed * runMultiplier : _maxSpeed);
 
             if (_verticalMovement == Movement.NONE && _horizontalMovement == Movement.NONE)
                 _velocityPlanar *= decreaseAcceleration;
@@ -102,6 +128,7 @@ namespace Core.Player
             return UnityEngine.Physics.Raycast(transform.position, -GetNormal(),
                 _characterController.height / 2.0f + eps);
         }
+
         private Vector3 Project(Vector3 vector, Vector3 normal)
         {
             return vector - Vector3.Dot(vector, normal) * normal;
