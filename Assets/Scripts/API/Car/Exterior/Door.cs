@@ -4,7 +4,7 @@ using OpenState = Core.Car.IOpenable.OpenState;
 
 namespace Core.Car
 {
-    public class Door : MonoBehaviour, IOpenable, IInteractable
+    public class Door : MonoBehaviour, IOpenable, IFunctional
     {
         public Vector3 StartAngle => _startAngle;
         public Vector3 EndAngle => _endAngle;

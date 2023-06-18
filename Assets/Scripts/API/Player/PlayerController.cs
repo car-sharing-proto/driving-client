@@ -8,6 +8,7 @@ namespace Core.Player
     {
         [SerializeField] private PlayerMovement _playerMovement;
 
+        public PlayerMovement PlayerMovement => _playerMovement;
         public Movement HorizontalMovement { get; protected set; } = Movement.NONE;
         public Movement VerticalMovement { get; protected set; } = Movement.NONE;
         public Vector3 RotationDelta { get; protected set; } = Vector3.zero;

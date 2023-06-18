@@ -24,13 +24,16 @@ namespace Core.Player
         private Movement _verticalMovement = Movement.NONE;
         private bool _isRunning = false;
         private bool _isJumping = false;
-        private bool _isSeating = false;
+        private bool _isSitting = false;
 
         private CharacterController _characterController;
 
         private Vector3 _rotationDelta = Vector3.zero;
         private Vector3 _velocityPlanar = Vector3.zero;
         private float _velocityVertical = 0f;
+
+        public Transform HeadTransform => _headTransform;
+        public bool IsSitting => _isSitting; 
 
         private void Awake()
         {
@@ -41,12 +44,12 @@ namespace Core.Player
         {
             UpdateView();
 
-            _characterController.enabled = !_isSeating;
+            _characterController.enabled = !_isSitting;
         }
 
         private void FixedUpdate()
         {
-            if (_isSeating)
+            if (_isSitting)
             {
                 return;
             }
@@ -60,10 +63,10 @@ namespace Core.Player
            Movement verticalMovement,
            bool isRunning,
            bool isJumping,
-           bool isSeating,
+           bool isSitting,
            Vector3 rotationDelta)
         {
-            _isSeating = isSeating;
+            _isSitting = isSitting;
             _horizontalMovement = horizontalMovement;
             _verticalMovement = verticalMovement;
             _isRunning = isRunning;

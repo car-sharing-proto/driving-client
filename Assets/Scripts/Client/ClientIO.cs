@@ -1,40 +1,55 @@
 using Core.Car;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientIO : MonoBehaviour
 {
     [SerializeField] private Door _door;
-    [SerializeField] private Transform _head;
     [SerializeField] private GameObject _cursor;
     [SerializeField] private UserController _userController;
 
-    private Raycaster _raycaster;
-
+    private List<ViewProbeHolder> _viewProbeHolders;
     private bool _isPause = false;
 
     private void Start()
     {
-        _raycaster = new Raycaster(_head, 3f);
+        _viewProbeHolders = new()
+        {
+            new ViewProbe<IFunctional>(_userController.PlayerMovement, 
+                3f, probe => probe.Interact()),
+            new ViewProbe<Seat>(_userController.PlayerMovement, 
+                1.5f, probe => probe.Take(_userController),
+                (probe, player) => !probe.IsTaken && !player.IsSitting),
+        };
 
         MouseController.SetVisibility(false);
     }
 
     private void Update()
     {
-        var interactable = _raycaster.CheckHit<IInteractable>();
-        if (interactable != null && Input.GetKeyUp(KeyCode.E))
+        CheckViewProbes();
+        CheckPauseSwitch();
+    }
+
+    private void CheckViewProbes()
+    {
+        _cursor.SetActive(false);
+
+        foreach (var holder in _viewProbeHolders)
         {
-            interactable.Interact();
+            if (holder.CheckCondition())
+            {
+                _cursor.SetActive(true);
+            }
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                holder.TakeProbeAndDoAction();
+            }
         }
+    }
 
-        _cursor.SetActive(interactable != null);
-
-        var seat = _raycaster.CheckHit<Seat>();
-        if (seat != null && !seat.IsTaken && Input.GetKeyUp(KeyCode.F))
-        {
-            seat.Take(_userController);
-        }
-
+    private void CheckPauseSwitch()
+    {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             _isPause = !_isPause;
