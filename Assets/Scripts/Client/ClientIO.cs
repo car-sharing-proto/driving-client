@@ -6,7 +6,7 @@ public class ClientIO : MonoBehaviour
 {
     [SerializeField] private Door _door;
     [SerializeField] private GameObject _cursor;
-    [SerializeField] private UserController _userController;
+    [SerializeField] private UserCharacterController _userController;
 
     private List<ViewProbeHolder> _viewProbeHolders;
     private bool _isPause = false;
@@ -15,12 +15,14 @@ public class ClientIO : MonoBehaviour
     {
         _viewProbeHolders = new()
         {
-            new ViewProbe<IFunctional>(_userController.PlayerMovement, 
+            new ViewProbe<IFunctional>(
+                _userController.CharacterBody.HeadTransform, 
                 3f, probe => probe.Interact(),
-                (probe, player) => probe.IsInteractable),
-            new ViewProbe<Seat>(_userController.PlayerMovement, 
-                2f, probe => probe.Take(_userController),
-                (probe, player) => !probe.IsTaken && !player.IsSitting),
+                probe => probe.IsInteractable),
+            new ViewProbe<Core.Character.Seat>(
+                _userController.CharacterBody.HeadTransform, 
+                2f, probe => probe.Take(_userController.CharacterBody),
+                probe => probe.IsInteractable(_userController.CharacterBody)),
         };
 
         MouseController.SetVisibility(false);

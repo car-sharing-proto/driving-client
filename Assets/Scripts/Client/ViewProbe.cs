@@ -1,4 +1,4 @@
-using Core.Player;
+using UnityEngine;
 
 public abstract class ViewProbeHolder
 {
@@ -12,20 +12,18 @@ public abstract class ViewProbeHolder
 }
 public class ViewProbe<T> : ViewProbeHolder where T : class
 {
-    public delegate bool Condition(T obj, PlayerMovement player);
+    public delegate bool Condition(T obj);
     public delegate void Action(T obj);
 
     private readonly Condition _condition;
     private readonly Action _action;
     private readonly Raycaster _raycaster;
-    private readonly PlayerMovement _player;
 
-    public ViewProbe(PlayerMovement player, float rayLength, Action action, Condition condition = null)
+    public ViewProbe(Transform view, float rayLength, Action action, Condition condition = null)
     {
         this._condition = condition;
         this._action = action;
-        this._player = player;
-        this._raycaster = new Raycaster(player.HeadTransform, rayLength);
+        this._raycaster = new Raycaster(view, rayLength);
     }
 
     public override bool CheckCondition(QueryMode mode)
@@ -37,7 +35,7 @@ public class ViewProbe<T> : ViewProbeHolder where T : class
             return false;
         }
 
-        if (_condition != null && !_condition(probe, _player))
+        if (_condition != null && !_condition(probe))
         {
             return false;
         }
