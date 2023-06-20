@@ -11,7 +11,6 @@ public class UserCharacterController : MonoBehaviour
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _runKey = KeyCode.LeftControl;
     [SerializeField] private KeyCode _leaveKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode _seatKey = KeyCode.E;
     [SerializeField] private float _mouseSensitivity = 10;
 
     private bool _canMove = true;

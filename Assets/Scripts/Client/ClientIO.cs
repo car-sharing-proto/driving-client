@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ClientIO : MonoBehaviour
 {
-    [SerializeField] private Door _door;
     [SerializeField] private GameObject _cursor;
     [SerializeField] private UserCharacterController _userController;
 
@@ -19,7 +18,7 @@ public class ClientIO : MonoBehaviour
                 _userController.CharacterBody.HeadTransform, 
                 3f, probe => probe.Interact(),
                 probe => probe.IsInteractable),
-            new ViewProbe<Core.Character.Seat>(
+            new ViewProbe<Core.Character.SeatPlace>(
                 _userController.CharacterBody.HeadTransform, 
                 2f, probe => probe.Take(_userController.CharacterBody),
                 probe => probe.IsInteractable(_userController.CharacterBody)),

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Character
 {
-    public class Seat : MonoBehaviour
+    public class SeatPlace : MonoBehaviour
     {
         [SerializeField] private Transform _placePoint;
         [SerializeField] private Transform _leavePoint;
