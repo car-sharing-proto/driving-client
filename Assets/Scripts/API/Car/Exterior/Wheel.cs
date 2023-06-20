@@ -12,13 +12,15 @@ namespace Core.Car
 
         private float _steerAngle = 0; 
 
-        public void Update()
+        private void Update()
         {
             _collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             _wheel.SetPositionAndRotation(pos, rot);
-            rot.eulerAngles = new Vector3(0, _steerAngle, 0);
-            _support.localRotation = rot;
+            _support.localEulerAngles = new Vector3(0, _steerAngle, 0);
             _support.position = pos;
+
+            _collider.steerAngle = _steerAngle;
+            _collider.steerAngle = _steerAngle;
         }
 
         public void Steer(float delta)
