@@ -7,7 +7,6 @@ namespace Core.Car
         [SerializeField] private Seat _driverSeat;
         [SerializeField] private Seat[] _passengerSeats;
         [SerializeField] private Door _trunkDoor;
-        [SerializeField] private Hood _hood;
 
         [SerializeField] private Controller[] _controllers;
 
