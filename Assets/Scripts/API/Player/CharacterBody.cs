@@ -32,6 +32,8 @@ namespace Core.Character
 
         private void FixedUpdate()
         {
+            _characterController.enabled = !IsSitting;
+
             if (IsSitting)
             {
                 ClearEnergy();

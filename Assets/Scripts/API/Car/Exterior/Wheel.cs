@@ -8,29 +8,17 @@ namespace Core.Car
         [SerializeField] private Transform _wheel;
         [SerializeField] private Transform _support;
 
-        private const float c_maxSteerAngle = 30;
-
-        private float _steerAngle = 0; 
+        public float SteerAngle { get; set; } = 0; 
 
         private void Update()
         {
             _collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             _wheel.SetPositionAndRotation(pos, rot);
-            _support.localEulerAngles = new Vector3(0, _steerAngle, 0);
+            _support.localEulerAngles = new Vector3(0, SteerAngle, 0);
             _support.position = pos;
 
-            _collider.steerAngle = _steerAngle;
-            _collider.steerAngle = _steerAngle;
-        }
-
-        public void Steer(float delta)
-        {
-            _steerAngle += delta;
-
-            if(Mathf.Abs(_steerAngle) > c_maxSteerAngle)
-            {
-                _steerAngle = Mathf.Sign(_steerAngle) * c_maxSteerAngle;
-            }
+            _collider.steerAngle = SteerAngle;
+            _collider.steerAngle = SteerAngle;
         }
 
         public void TransmitTorque(float force)
