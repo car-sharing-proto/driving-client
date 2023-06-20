@@ -6770,6 +6770,7 @@ GameObject:
   - component: {fileID: 4236702517537735720}
   - component: {fileID: 4236702517537735721}
   - component: {fileID: 4236702517537735722}
+  - component: {fileID: 4236702517537735723}
   m_Layer: 0
   m_Name: kia rio x unity edit
   m_TagString: Untagged
@@ -6795,10 +6796,10 @@ MonoBehaviour:
   - {fileID: 1569092994}
   - {fileID: 513676340}
   - {fileID: 2085481216}
-  _trunkDoor: {fileID: 7859765887854050548}
   _controllers:
   - {fileID: 4236702517537735721}
   - {fileID: 4236702517537735722}
+  - {fileID: 4236702517537735723}
 --- !u!114 &4236702517537735721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6831,6 +6832,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _signalLamp: {fileID: 0}
   _hood: {fileID: 7429539804577155616}
+--- !u!114 &4236702517537735723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236702517537735719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d5de6a7a1d0ad4c84c694303f88ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _signalLamp: {fileID: 0}
+  _trunkDoor: {fileID: 7859765887854050548}
 --- !u!23 &4246485206362527272
 MeshRenderer:
   m_ObjectHideFlags: 0
