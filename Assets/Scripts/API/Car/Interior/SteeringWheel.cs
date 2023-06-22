@@ -12,9 +12,8 @@ namespace Core.Car
 
         private void Update()
         {
-            var angle = _wheelTransform.localEulerAngles;
-            angle.x = SteerAngle / c_maxSteerAngle * 360.0f * 1.5f;
-            _wheelTransform.localEulerAngles = angle;
+            _wheelTransform.localEulerAngles = 
+                new Vector3(SteerAngle / c_maxSteerAngle * 360.0f * 1.5f, 0);
         }
 
         public void Steer(float delta)

@@ -79,7 +79,7 @@ namespace Core.Character
             _rotation += rotationDelta;
             _rotation.y = Mathf.Clamp(_rotation.y, -90, 90);
             _headTransform.localEulerAngles = new Vector3(-_rotation.y, 0);
-            transform.eulerAngles = new Vector3(0, _rotation.x);
+            transform.localEulerAngles = new Vector3(0, _rotation.x);
         }
 
         public void SitDown(Transform placePoint)

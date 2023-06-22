@@ -1,6 +1,7 @@
 using Core.Car;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClientIO : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class ClientIO : MonoBehaviour
 
     private List<ViewProbeHolder> _viewProbeHolders;
     private bool _isPause = false;
+
+    //test
+    [SerializeField] private Text _speed;
+    [SerializeField] private Car _car;
+    private readonly SmoothPressing gasSmoothPressing = new(1f);
+    private readonly SmoothPressing breakSmoothPressing = new(2f);
 
     private void Start()
     {
@@ -31,6 +38,31 @@ public class ClientIO : MonoBehaviour
     {
         CheckViewProbes();
         CheckPauseSwitch();
+
+        // test
+
+        _speed.text = $"{(int)(_car.GetVelocity() * 3.6f)} km/h";
+    
+        if(Input.GetKey(KeyCode.W))
+        {
+            gasSmoothPressing.Press();
+        }
+        else
+        {
+            gasSmoothPressing.Release();
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            breakSmoothPressing.Press();
+        }
+        else
+        {
+            breakSmoothPressing.Release();
+        }
+
+        _car.GasPedal.Value = gasSmoothPressing.Value;
+        _car.BreakPedal.Value = breakSmoothPressing.Value;
     }
 
     private void CheckViewProbes()
@@ -39,7 +71,7 @@ public class ClientIO : MonoBehaviour
 
         foreach (var holder in _viewProbeHolders)
         {
-            var mode = Input.GetKeyUp(KeyCode.E) ? 
+            var mode = Input.GetKeyDown(KeyCode.E) ? 
                 ViewProbeHolder.QueryMode.INTERACT :
                 ViewProbeHolder.QueryMode.CHECK;
 
@@ -52,7 +84,7 @@ public class ClientIO : MonoBehaviour
 
     private void CheckPauseSwitch()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             _isPause = !_isPause;
 

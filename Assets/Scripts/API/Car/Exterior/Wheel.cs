@@ -10,6 +10,8 @@ namespace Core.Car
 
         public float SteerAngle { get; set; } = 0; 
 
+        public float RPM { get; private set; } = 0; 
+
         private void Update()
         {
             _collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
@@ -19,6 +21,8 @@ namespace Core.Car
 
             _collider.steerAngle = SteerAngle;
             _collider.steerAngle = SteerAngle;
+
+            RPM = _collider.rpm;
         }
 
         public void TransmitTorque(float force)
