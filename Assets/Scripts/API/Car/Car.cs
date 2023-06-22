@@ -17,6 +17,7 @@ namespace Core.Car
         [SerializeField] private Wheel _rearLeftWheel;
 
         [SerializeField] private Tachometer _tachometer;
+        [SerializeField] private Speedometer _speedometer;
 
         [SerializeField] private Pedal _gasPedal;
         [SerializeField] private Pedal _breakPedal;
@@ -34,12 +35,12 @@ namespace Core.Car
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BreakPedal => _breakPedal;
+        public Transmission Transmission => _transmission;
 
         private void Awake()
         {
-            _engine = new Engine(900.0f, 6000.0f, 180.0f);
+            _engine = new Engine(900.0f, 6000.0f, 150.0f);
             _transmission = new Transmission();
-            _tachometer.SetEngine(_engine);
             _rigidbody = GetComponent<Rigidbody>(); 
 
             //_steeringWheel.Steer(-5);
@@ -47,7 +48,7 @@ namespace Core.Car
 
         private void FixedUpdate()
         {
-            var resistance = 0;// GetResistanceForce();
+            var resistance = GetResistanceForce();
             _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
             _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;
@@ -57,6 +58,8 @@ namespace Core.Car
 
             _engine.Update(_gasPedal.Value, _transmission.OutputRPM);
             _transmission.Update(_engine.Torque, wheelsRPM);
+            _speedometer.UpdateValue(GetVelocity() * 3.6f);
+            _tachometer.UpdateValue(_engine.RPM);
 
             _frontLeftWheel.Break(_breakPedal.Value * _breakForce);
             _frontRightWheel.Break(_breakPedal.Value * _breakForce);

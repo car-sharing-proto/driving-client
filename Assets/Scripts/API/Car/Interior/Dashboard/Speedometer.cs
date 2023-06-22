@@ -2,16 +2,17 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public class Tachometer : MonoBehaviour
+    public class Speedometer : MonoBehaviour
     {
         [SerializeField] private Transform _needle;
         [SerializeField] private float _maxAngle;
-        [SerializeField] private float _maxRPM;
-        
-        public void UpdateValue(float rpm)
+        [SerializeField] private float _maxSpeed;
+
+        public void UpdateValue(float speed)
         {
-            var ratio = rpm / _maxRPM;
-            if(ratio > 1)
+            var ratio = speed / _maxSpeed;
+
+            if (ratio > 1)
             {
                 ratio = 1;
             }
@@ -21,7 +22,7 @@ namespace Core.Car
                 ratio = 0;
             }
 
-            _needle.localEulerAngles = 
+            _needle.localEulerAngles =
                 _maxAngle * ratio * Vector3.right;
         }
     }

@@ -41,7 +41,8 @@ public class ClientIO : MonoBehaviour
 
         // test
 
-        _speed.text = $"{(int)(_car.GetVelocity() * 3.6f)} km/h";
+        _speed.text = $"{(int)(_car.GetVelocity() * 3.6f)} km/h \n" +
+            $"{_car.Transmission.CurrentGear + 1}";
     
         if(Input.GetKey(KeyCode.W))
         {
