@@ -35,6 +35,7 @@ namespace Core.Car
         public Pedal GasPedal => _gasPedal;
         public Pedal BreakPedal => _breakPedal;
         public Transmission Transmission => _transmission;
+        public Engine Engine => _engine;
 
         private void Awake()
         {
@@ -43,7 +44,7 @@ namespace Core.Car
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
 
-            _steeringWheel.Steer(-5);
+            //_steeringWheel.Steer(-5);
         }
 
         private void FixedUpdate()

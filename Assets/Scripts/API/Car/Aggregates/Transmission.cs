@@ -36,7 +36,7 @@ namespace Core.Car
         public void Initialize()
         {
             _ratioShifter = new RatioShifter(_gears[0].Ratio);
-            Mode = TransmissionMode.DRIVE;
+            Mode = TransmissionMode.PARKING;
         }
 
         public float GetRatio()
@@ -44,14 +44,23 @@ namespace Core.Car
             return Mode switch
             {
                 TransmissionMode.REVERSE =>
-                    _reverseGearRatio * _lastGearRatio,
+                    -_reverseGearRatio * _lastGearRatio,
                 TransmissionMode.DRIVE =>
                     _ratioShifter.Value * _lastGearRatio,
                 _ => 0,
             };
         }
 
-        public void Update(float inputTorque, float inputRPM, float outputRPM, float speed)
+        public void SwitchMode(TransmissionMode mode)
+        {
+            if (_speed <= 0.01f)
+            {
+                Mode = mode;
+            }
+        }
+
+        public void Update(float inputTorque, float inputRPM,
+            float outputRPM, float speed)
         {
             _speed = speed;
             _ratioShifter.Update();
@@ -60,11 +69,12 @@ namespace Core.Car
             UpdateGearShifting(outputRPM);
         }
 
-        private void UpdateTorque(float inputTorque, float inputRPM, float outputRPM)
+        private void UpdateTorque(float inputTorque, 
+            float inputRPM, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            if (nativeRPM < _idlingRMP && _fluidTransition < 1)
+            if (nativeRPM < _idlingRMP)
             {
                 _fluidTransition = _fluidCouplingCurve.Evaluate(
                    (_idlingRMP - nativeRPM) / _idlingRMP);
@@ -75,13 +85,19 @@ namespace Core.Car
             }
 
             Load = 1.0f - _fluidTransition;
-
             Torque = inputTorque * GetRatio();
             RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
         }
 
         private void UpdateGearShifting(float rpm)
         {
+            if(Mode != TransmissionMode.DRIVE)
+            {
+                _currentGear = 0;
+
+                return;
+            }
+
             rpm *= GetRatio();
 
             if (_ratioShifter.IsShifting)

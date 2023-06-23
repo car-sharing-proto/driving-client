@@ -15,18 +15,18 @@ public class ClientIO : MonoBehaviour
     [SerializeField] private Text _speed;
     [SerializeField] private Car _car;
     private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f);
-    private readonly SmoothPressing breakSmoothPressing = new(1f, 2.0f);
+    private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f);
 
     private void Start()
     {
         _viewProbeHolders = new()
         {
             new ViewProbe<IFunctional>(
-                _userController.CharacterBody.HeadTransform, 
+                _userController.CharacterBody.HeadTransform,
                 3f, probe => probe.Interact(),
                 probe => probe.IsInteractable),
             new ViewProbe<Core.Character.SeatPlace>(
-                _userController.CharacterBody.HeadTransform, 
+                _userController.CharacterBody.HeadTransform,
                 2f, probe => probe.Take(_userController.CharacterBody),
                 probe => probe.IsInteractable(_userController.CharacterBody)),
         };
@@ -43,8 +43,8 @@ public class ClientIO : MonoBehaviour
 
         _speed.text = $"{(int)(_car.GetVelocity() * 3.6f)} km/h \n" +
             $"{_car.Transmission.CurrentGear + 1}";
-    
-        if(Input.GetKey(KeyCode.W))
+
+        if (Input.GetKey(KeyCode.W))
         {
             gasSmoothPressing.Press();
         }
@@ -62,6 +62,31 @@ public class ClientIO : MonoBehaviour
             breakSmoothPressing.Release();
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            _car.Transmission.SwitchMode(TransmissionMode.DRIVE);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            _car.Transmission.SwitchMode(TransmissionMode.PARKING);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            var state = 
+                _car.Engine.Starter.State == EngineState.STARTED ?
+                EngineState.STOPED :
+                EngineState.STARTED;
+
+            _car.Engine.Starter.SetState(state);
+        }
+
         gasSmoothPressing.FullPush =
             breakSmoothPressing.FullPush =
             Input.GetKey(KeyCode.LeftControl);
@@ -76,7 +101,7 @@ public class ClientIO : MonoBehaviour
 
         foreach (var holder in _viewProbeHolders)
         {
-            var mode = Input.GetKeyDown(KeyCode.E) ? 
+            var mode = Input.GetKeyDown(KeyCode.E) ?
                 ViewProbeHolder.QueryMode.INTERACT :
                 ViewProbeHolder.QueryMode.CHECK;
 
