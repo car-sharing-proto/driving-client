@@ -2,24 +2,31 @@ using UnityEngine;
 
 public class SmoothPressing
 {
-    private readonly float _speed = 0.1f;
+    private readonly float _pressSpeed = 0.1f;
+    private readonly float _releaseSpeed = 0.1f;
+    private readonly float _middleValue = 0.5f;
 
+    public bool FullPush { get; set; } = false;
     public float Value { get; private set; }
 
-    public SmoothPressing(float speed)
+    public SmoothPressing(float pressSpeed,
+        float releaseSpeed, float middleValue = 0.5f)
     {
-        this._speed = speed;
+        this._pressSpeed = pressSpeed;
+        this._releaseSpeed = releaseSpeed;
+        this._middleValue = middleValue;
     }
 
     public void Press()
     {
-        if (Value < 1)
+        var press = FullPush ? 1 : _middleValue;
+        if (Value < press)
         {
-            Value += _speed * Time.deltaTime;
+            Value += _pressSpeed * Time.deltaTime;
         }
-        else
+        else if (Value > press + _releaseSpeed * Time.deltaTime * 2.0f)
         {
-            Value = 1;
+            Value -= _releaseSpeed * Time.deltaTime;
         }
     }
 
@@ -27,7 +34,7 @@ public class SmoothPressing
     {
         if (Value > 0)
         {
-            Value -= _speed * Time.deltaTime;
+            Value -= _releaseSpeed * Time.deltaTime;
         }
         else
         {

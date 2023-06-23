@@ -10,62 +10,33 @@ namespace Core.Car
         PARKING = 0
     }
 
+    [System.Serializable]
     public class Transmission
     {
-        private readonly RatioShifter _ratioShifter;
-        private readonly float[] _gears = new float[]
-        {
-            4.4f,
-            2.726f,
-            1.834f,
-            1.392f,
-            1.0f,
-            0.774f
-        };
+        [SerializeField] private AnimationCurve _fluidCouplingCurve;
+        [SerializeField] private Gear[] _gears;
+        [SerializeField] private float _reverseGearRatio = 3.44f;
+        [SerializeField] private float _fluidDamp = 0.9999f;
+        [SerializeField] private float _idlingRMP = 800;
+        [SerializeField] private float _lastGearRatio = 3.574f;
 
-        private readonly float _reverseGear = 3.44f;
+        [SerializeField] private float _accelerationFactor = 1;
 
-        private readonly float _hydroDamp = 0.95f;
-        private readonly float _idlingRMP = 800;
-        private readonly float _lastGearRatio = 3.574f;
-        private readonly float _downshiftThreshold = 1500.0f;
-        private readonly float _superDownshiftThreshold = 1200.0f;
-        private readonly float _upshiftThreshold = 2500.0f;
-        private float _hydroTransition = 0;
+        private RatioShifter _ratioShifter;
+        private float _fluidTransition = 0;
+        private float _speed = 0;
         private int _currentGear = 0;
 
         public TransmissionMode Mode { get; private set; }
         public float Torque { get; private set; }
-        public float OutputRPM { get; private set; }
+        public float RPM { get; private set; }
+        public float Load { get; private set; }
         public int CurrentGear => _currentGear;
 
-        public Transmission()
+        public void Initialize()
         {
+            _ratioShifter = new RatioShifter(_gears[0].Ratio);
             Mode = TransmissionMode.DRIVE;
-            _ratioShifter = new RatioShifter(_gears[0], 0.05f);
-        }
-
-        public Transmission(
-            float[] gears,
-            float reverseGear,
-            float hydroDamp,
-            float idlingRMP,
-            float lastGearRatio,
-            float downshiftThreshold,
-            float superDownshiftThreshold,
-            float upshiftThreshold,
-            float hydroTransition
-        ) : base()
-        {
-            _gears = gears;
-            _reverseGear = reverseGear;
-            _hydroDamp = hydroDamp;
-            _idlingRMP = idlingRMP;
-            _lastGearRatio = lastGearRatio;
-            _downshiftThreshold = downshiftThreshold;
-            _superDownshiftThreshold = superDownshiftThreshold;
-            _upshiftThreshold = upshiftThreshold;
-            _hydroTransition = hydroTransition;
         }
 
         public float GetRatio()
@@ -73,53 +44,55 @@ namespace Core.Car
             return Mode switch
             {
                 TransmissionMode.REVERSE =>
-                    _reverseGear * _lastGearRatio,
+                    _reverseGearRatio * _lastGearRatio,
                 TransmissionMode.DRIVE =>
                     _ratioShifter.Value * _lastGearRatio,
                 _ => 0,
             };
         }
 
-        public void Update(float inputTorque, float outputRPM)
+        public void Update(float inputTorque, float inputRPM, float outputRPM, float speed)
         {
-            UpdateTorque(inputTorque, outputRPM);
-            UpdateGearShifting();
+            _speed = speed;
+            _ratioShifter.Update();
+
+            UpdateTorque(inputTorque, inputRPM, outputRPM);
+            UpdateGearShifting(outputRPM);
         }
 
-        private void UpdateTorque(float inputTorque, float outputRPM)
+        private void UpdateTorque(float inputTorque, float inputRPM, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            if (nativeRPM < _idlingRMP)
+            if (nativeRPM < _idlingRMP && _fluidTransition < 1)
             {
-                _hydroTransition = (_idlingRMP - nativeRPM) / _idlingRMP;
+                _fluidTransition = _fluidCouplingCurve.Evaluate(
+                   (_idlingRMP - nativeRPM) / _idlingRMP);
             }
             else
             {
-                _hydroTransition *= _hydroDamp;
+                _fluidTransition *= _fluidDamp;
             }
 
+            Load = 1.0f - _fluidTransition;
+
             Torque = inputTorque * GetRatio();
-            OutputRPM = Mathf.Lerp(nativeRPM, _idlingRMP, _hydroTransition);
+            RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
         }
 
-        private void UpdateGearShifting()
+        private void UpdateGearShifting(float rpm)
         {
-            _ratioShifter.Update();
+            rpm *= GetRatio();
 
             if (_ratioShifter.IsShifting)
             {
                 return;
             }
-            if (OutputRPM > _upshiftThreshold)
+            if (rpm > _gears[_currentGear].MaxRPM * _accelerationFactor)
             {
                 UpshiftGear(1);
             }
-            else if (OutputRPM < _superDownshiftThreshold)
-            {
-                DownshiftGear(2);
-            }
-            else if(OutputRPM < _downshiftThreshold)
+            else if(rpm < _gears[_currentGear].MinRPM * _accelerationFactor)
             {
                 DownshiftGear(1);
             }
@@ -134,8 +107,15 @@ namespace Core.Car
 
             if (_currentGear < _gears.Length - count)
             {
+                if(_gears[_currentGear + 1].MinSpeed > _speed)
+                {
+                    return;
+                }
+
                 _currentGear += count;
-                _ratioShifter.Shift(_gears[_currentGear]);
+                _ratioShifter.Shift(
+                    _gears[_currentGear].Ratio, 
+                    _gears[_currentGear].ShiftSpeed);
             }
         }
 
@@ -149,7 +129,9 @@ namespace Core.Car
             if (_currentGear > count - 1)
             {
                 _currentGear -= count;
-                _ratioShifter.Shift(_gears[_currentGear]);
+                _ratioShifter.Shift(
+                    _gears[_currentGear].Ratio,
+                    _gears[_currentGear].ShiftSpeed);
             }
         }
     }

@@ -729,7 +729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672895528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.03, z: -11.01}
+  m_LocalPosition: {x: 0, y: 2.69, z: -11.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1861,13 +1861,13 @@ WheelCollider:
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1372372045
 GameObject:
@@ -2418,13 +2418,13 @@ WheelCollider:
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1892073909
 GameObject:
@@ -2577,13 +2577,13 @@ WheelCollider:
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!4 &1931047966
 Transform:
@@ -2671,13 +2671,13 @@ WheelCollider:
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &2005097613
 GameObject:
@@ -7686,14 +7686,97 @@ MonoBehaviour:
   _steeringWheel: {fileID: 1498352624}
   _frontRightWheel: {fileID: 1789839932}
   _frontLeftWheel: {fileID: 1931047964}
-  _rearRightWheel: {fileID: 1789839932}
+  _rearRightWheel: {fileID: 1933123013}
   _rearLeftWheel: {fileID: 1342294687}
   _tachometer: {fileID: 366715980}
   _speedometer: {fileID: 1770247187}
   _gasPedal: {fileID: 9075514185541107116}
   _breakPedal: {fileID: 5122677527426232203}
-  _breakForce: 700
+  _breakForce: 1200
   _maxSpeed: 100
+  _engine:
+    _resistanceCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.29605103
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _maxRPM: 6000
+    _idlingRPM: 700
+    _maxTorque: 150
+  _transmission:
+    _fluidCouplingCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.69620323
+        value: 1.0000012
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _gears:
+    - _ratio: 4.4
+      _minSpeed: 0
+      _minRPM: 0
+      _maxRPM: 1700
+    - _ratio: 2.726
+      _minSpeed: 5
+      _minRPM: 900
+      _maxRPM: 2600
+    - _ratio: 1.834
+      _minSpeed: 25
+      _minRPM: 1500
+      _maxRPM: 2500
+    - _ratio: 1.392
+      _minSpeed: 35
+      _minRPM: 1500
+      _maxRPM: 2500
+    - _ratio: 1
+      _minSpeed: 45
+      _minRPM: 1500
+      _maxRPM: 2500
+    - _ratio: 0.774
+      _minSpeed: 65
+      _minRPM: 1500
+      _maxRPM: 2500
+    _reverseGearRatio: 3.44
+    _fluidDamp: 0.99
+    _idlingRMP: 700
+    _lastGearRatio: 3.574
+    _accelerationFactor: 1
 --- !u!114 &4236702517537735721
 MonoBehaviour:
   m_ObjectHideFlags: 0

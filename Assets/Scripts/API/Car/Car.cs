@@ -5,6 +5,9 @@ namespace Core.Car
     [RequireComponent(typeof(Rigidbody))]
     public class Car : MonoBehaviour
     {
+        public const float c_velocityEps = 0.01f;
+
+        [SerializeField] private Transform _centerOfMass;
         [SerializeField] private Seat _driverSeat;
         [SerializeField] private Seat[] _passengerSeats;
         [SerializeField] private Controller[] _controllers;
@@ -21,17 +24,13 @@ namespace Core.Car
 
         [SerializeField] private Pedal _gasPedal;
         [SerializeField] private Pedal _breakPedal;
-
         [SerializeField] private float _breakForce;
-
         [SerializeField] private float _maxSpeed;
 
-        public const float c_velocityEps = 0.01f;
+        [SerializeField] private Engine _engine;
+        [SerializeField] private Transmission _transmission;
 
         private Rigidbody _rigidbody;
-
-        private Engine _engine;
-        private Transmission _transmission;
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BreakPedal => _breakPedal;
@@ -39,11 +38,12 @@ namespace Core.Car
 
         private void Awake()
         {
-            _engine = new Engine(900.0f, 6000.0f, 150.0f);
-            _transmission = new Transmission();
-            _rigidbody = GetComponent<Rigidbody>(); 
+            _engine.Initialize();
+            _transmission.Initialize();
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.centerOfMass = _centerOfMass.localPosition;
 
-            //_steeringWheel.Steer(-5);
+            _steeringWheel.Steer(-5);
         }
 
         private void FixedUpdate()
@@ -56,8 +56,15 @@ namespace Core.Car
 
             var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
 
-            _engine.Update(_gasPedal.Value, _transmission.OutputRPM);
-            _transmission.Update(_engine.Torque, wheelsRPM);
+            _engine.Update(_gasPedal.Value, 
+                _transmission.RPM,
+                _transmission.Load);
+
+            _transmission.Update(_engine.Torque, 
+                _engine.OutputRPM,
+                wheelsRPM,
+                GetVelocity() * 3.6f);
+
             _speedometer.UpdateValue(GetVelocity() * 3.6f);
             _tachometer.UpdateValue(_engine.RPM);
 

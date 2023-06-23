@@ -14,8 +14,8 @@ public class ClientIO : MonoBehaviour
     //test
     [SerializeField] private Text _speed;
     [SerializeField] private Car _car;
-    private readonly SmoothPressing gasSmoothPressing = new(1f);
-    private readonly SmoothPressing breakSmoothPressing = new(2f);
+    private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f);
+    private readonly SmoothPressing breakSmoothPressing = new(1f, 2.0f);
 
     private void Start()
     {
@@ -61,6 +61,10 @@ public class ClientIO : MonoBehaviour
         {
             breakSmoothPressing.Release();
         }
+
+        gasSmoothPressing.FullPush =
+            breakSmoothPressing.FullPush =
+            Input.GetKey(KeyCode.LeftControl);
 
         _car.GasPedal.Value = gasSmoothPressing.Value;
         _car.BreakPedal.Value = breakSmoothPressing.Value;

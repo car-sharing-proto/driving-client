@@ -4,7 +4,7 @@ namespace Core.Car
 {
     public class RatioShifter
     {
-        private readonly float _shiftSpeed;
+        private float _shiftSpeed;
         private float _nextRatio;
         private float _prevRatio;
         private float _t;
@@ -12,25 +12,20 @@ namespace Core.Car
         public float Value { get; private set; }
         public bool IsShifting => _t > 0f && _t < 1f;
 
-        public RatioShifter(float initialRatio, float shiftSpeed)
+        public RatioShifter(float initialRatio)
         {
             _nextRatio = initialRatio;
-            _shiftSpeed = shiftSpeed;
+            _shiftSpeed = 0;
             _prevRatio = 0;
             _t = 1f;
         }
 
-        public void Shift(float prevRatio, float nextRatio)
-        {
-            _prevRatio = prevRatio;
-            _nextRatio = nextRatio;
-            _t = 0;
-        }
-
-        public void Shift(float nextRatio)
+        public void Shift(float nextRatio, float shiftSpeed)
         {
             _prevRatio = Value;
             _nextRatio = nextRatio;
+            _shiftSpeed = shiftSpeed;
+
             _t = 0;
         }
 
