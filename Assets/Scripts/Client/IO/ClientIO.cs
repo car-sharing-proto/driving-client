@@ -25,10 +25,10 @@ public class ClientIO : MonoBehaviour
                 _userController.CharacterBody.HeadTransform,
                 3f, probe => probe.Interact(),
                 probe => probe.IsInteractable),
-            new ViewProbe<Core.Character.SeatPlace>(
+            new ViewProbe<SeatController>(
                 _userController.CharacterBody.HeadTransform,
-                2f, probe => probe.Take(_userController.CharacterBody),
-                probe => probe.IsInteractable(_userController.CharacterBody)),
+                2f, probe => probe.Take(_userController),
+                probe => probe.IsInteractable(_userController)),
         };
 
         MouseController.SetVisibility(false);
@@ -45,7 +45,7 @@ public class ClientIO : MonoBehaviour
             $"{_car.Transmission.CurrentGear + 1}";
 
         // temporary testing, I promise
-        var inCar = _userController.CharacterBody.IsSitting;
+        var inCar = _userController.CarController != null;
         if (inCar) 
         {
             if (Input.GetKey(KeyCode.W))
@@ -68,47 +68,43 @@ public class ClientIO : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                _car.Transmission.SwitchMode(TransmissionMode.DRIVE);
+                _userController.CarController.SetDrivingMode();
             }
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
+                _userController.CarController.SetReverseMode();
             }
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                _car.Transmission.SwitchMode(TransmissionMode.PARKING);
+                _userController.CarController.SetParkingMode();
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                _car.SteeringWheel.Steer(-Time.deltaTime);
+                _userController.CarController.SteerLeft(Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                _car.SteeringWheel.Steer(Time.deltaTime);
+                _userController.CarController.SteerRight(Time.deltaTime);
             }
-
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                var state =
-                    _car.Engine.Starter.State == EngineState.STARTED ?
-                    EngineState.STOPED :
-                    EngineState.STARTED;
-
-                _car.Engine.Starter.SetState(state);
+                _userController.CarController.EngineSwitch();
             }
 
             gasSmoothPressing.FullPush =
                 breakSmoothPressing.FullPush =
                 Input.GetKey(KeyCode.LeftControl);
+
+            _userController.CarController.GasPedalPress(gasSmoothPressing.Value);
+            _userController.CarController.BreakPedalPress(breakSmoothPressing.Value);
         }
 
-        _car.GasPedal.Value = gasSmoothPressing.Value;
-        _car.BreakPedal.Value = breakSmoothPressing.Value;
+       
     }
 
     private void CheckViewProbes()

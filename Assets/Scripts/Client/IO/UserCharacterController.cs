@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core.Character;
+using Core.Car;
 
 public class UserCharacterController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UserCharacterController : MonoBehaviour
 
     private bool _canMove = true;
 
+    public CarController CarController { get; set; }
     public CharacterBody CharacterBody => _characterBody;
 
     private void Update()

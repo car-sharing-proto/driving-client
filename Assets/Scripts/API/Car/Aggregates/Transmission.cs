@@ -5,7 +5,7 @@ namespace Core.Car
     public enum TransmissionMode : int
     {
         NEUTRAL = 0,
-        DRIVE = 1,
+        DRIVING = 1,
         REVERSE = -1,
         PARKING = 0
     }
@@ -45,7 +45,7 @@ namespace Core.Car
             {
                 TransmissionMode.REVERSE =>
                     -_reverseGearRatio * _lastGearRatio,
-                TransmissionMode.DRIVE =>
+                TransmissionMode.DRIVING =>
                     _ratioShifter.Value * _lastGearRatio,
                 _ => 0,
             };
@@ -91,7 +91,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if(Mode != TransmissionMode.DRIVE)
+            if(Mode != TransmissionMode.DRIVING)
             {
                 _currentGear = 0;
 

@@ -11,6 +11,7 @@ namespace Core.Character
 
         public bool IsTaken => _sitable != null;
         public bool IsLocked { get; set; } = false;
+        public ISitable Sitable => _sitable;
 
         private void Update()
         {
@@ -22,15 +23,17 @@ namespace Core.Character
             return !IsLocked && !IsTaken && !sitable.IsSitting;
         }
 
-        public void Take(ISitable sitable)
+        public bool Take(ISitable sitable)
         {
             if (!IsInteractable(sitable))
             {
-                return;
+                return false;
             }
 
             _sitable = sitable;
             _sitable.SitDown(_placePoint);
+
+            return true;
         }
 
         public void Free()
@@ -48,7 +51,9 @@ namespace Core.Character
         private void CheckLeaving()
         {
             if (_sitable == null || _sitable.IsSitting)
+            {
                 return;
+            }
 
             Free();
         }
