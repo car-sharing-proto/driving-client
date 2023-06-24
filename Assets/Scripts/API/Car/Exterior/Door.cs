@@ -6,16 +6,16 @@ namespace Core.Car
 {
     public class Door : MonoBehaviour, IOpenable, IFunctional
     {
-        public Vector3 StartAngle => _startAngle;
-        public Vector3 EndAngle => _endAngle;
-        public OpenState State { get; private set; }
-
         [SerializeField] private Vector3 _startAngle;
         [SerializeField] private Vector3 _endAngle;
         [SerializeField] private float _openSpeed;
 
         private Animation.Vector3_LinearAnimation _openAnimation;
         private Animation.Vector3_LinearAnimation _closeAnimation;
+
+        public Vector3 StartAngle => _startAngle;
+        public Vector3 EndAngle => _endAngle;
+        public OpenState State { get; private set; }
 
         public bool IsInteractable => State is OpenState.OPEN or OpenState.CLOSED;
 
@@ -24,10 +24,11 @@ namespace Core.Car
             State = OpenState.CLOSED;
 
             _openAnimation = new(StartAngle, EndAngle, _openSpeed,
-                angles => transform.localEulerAngles = angles, () => State = OpenState.OPEN);
+                angles => transform.localEulerAngles = angles, 
+                () => State = OpenState.OPEN);
             _closeAnimation = new(EndAngle, StartAngle, _openSpeed,
-                angles => transform.localEulerAngles = angles, () => State = OpenState.CLOSED);
-
+                angles => transform.localEulerAngles = angles,
+                () => State = OpenState.CLOSED);
         }
 
         public void Open()

@@ -32,8 +32,6 @@ namespace Core.Character
 
         private void Update()
         {
-            //_characterController.enabled = !IsSitting;
-
             if (IsSitting)
             {
                 ClearEnergy();
@@ -64,7 +62,8 @@ namespace Core.Character
                     UnityEngine.Physics.gravity.y;
             }
 
-            _characterController.Move(_planarVelocity + _verticalVelocity * Vector3.up);
+            _characterController.Move(_planarVelocity 
+                + _verticalVelocity * Vector3.up);
         }
 
         public void Move(Movement horizontal, Movement vertical)
