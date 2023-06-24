@@ -19,6 +19,11 @@ namespace Core.Car
             _car.Engine.Starter.SetState(state);
         }
 
+        public void ParkingBreakSwitch()
+        {
+            _car.ParkingBreak.Switch();
+        }
+
         public void GasPedalPress(float value)
         {
             _car.GasPedal.Value = value;

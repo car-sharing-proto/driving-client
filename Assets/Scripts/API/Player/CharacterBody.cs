@@ -30,9 +30,9 @@ namespace Core.Character
             _planarVelocity = Vector3.zero;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            _characterController.enabled = !IsSitting;
+            //_characterController.enabled = !IsSitting;
 
             if (IsSitting)
             {
@@ -47,7 +47,7 @@ namespace Core.Character
             var maxVelocity = _speed * (IsRunning ? _runMultiplier : 1f);
 
             _planarVelocity *= _damping * decreaseAcceleration;
-            _planarVelocity += _acceleration * Time.fixedDeltaTime;
+            _planarVelocity += _acceleration * Time.deltaTime;
 
             if (_planarVelocity.magnitude > maxVelocity)
             {
@@ -60,7 +60,7 @@ namespace Core.Character
             }
             else
             {
-                _verticalVelocity += _gravity * Time.fixedDeltaTime *
+                _verticalVelocity += _gravity * Time.deltaTime *
                     UnityEngine.Physics.gravity.y;
             }
 
@@ -85,6 +85,7 @@ namespace Core.Character
         public void SitDown(Transform placePoint)
         {
             IsSitting = true;
+            _characterController.enabled = false;
 
             SetParent(placePoint);
         }
@@ -95,14 +96,13 @@ namespace Core.Character
             Translate(leavePoint.position);
 
             IsSitting = false;
+            _characterController.enabled = true;
         }
 
         public void Translate(Vector3 position)
         {
             ClearEnergy();
-            _characterController.enabled = false;
             transform.position = position;
-            _characterController.enabled = true;
         }
 
         private void ClearEnergy()

@@ -8,8 +8,6 @@ namespace Core.Car
         public const float c_velocityEps = 0.01f;
 
         [SerializeField] private Transform _centerOfMass;
-        [SerializeField] private Seat _driverSeat;
-        [SerializeField] private Seat[] _passengerSeats;
         [SerializeField] private Controller[] _controllers;
 
         [SerializeField] private SteeringWheel _steeringWheel;
@@ -21,6 +19,7 @@ namespace Core.Car
 
         [SerializeField] private Tachometer _tachometer;
         [SerializeField] private Speedometer _speedometer;
+        [SerializeField] private ParkingBreak _parkingBreak;
 
         [SerializeField] private Pedal _gasPedal;
         [SerializeField] private Pedal _breakPedal;
@@ -34,8 +33,9 @@ namespace Core.Car
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BreakPedal => _breakPedal;
-        public Transmission Transmission => _transmission;
+        public ParkingBreak ParkingBreak => _parkingBreak;
         public Engine Engine => _engine;
+        public Transmission Transmission => _transmission;
         public SteeringWheel SteeringWheel => _steeringWheel;
 
         private void Awake()
@@ -48,30 +48,21 @@ namespace Core.Car
 
         private void FixedUpdate()
         {
-            var resistance = GetResistanceForce();
-            _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
-            _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
-            _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;
-            _frontRightWheel.SteerAngle = _steeringWheel.SteerAngle;
+            HandleSteering();
+            HandleEngine();
+            HandleDashboard();
+            HandleBreaking();
+        }
 
-            var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
+        public float GetVelocity()
+        {
+            var project = Vector3.Project(_rigidbody.velocity,
+                _rigidbody.transform.forward);
+            var movementSign = Mathf.Sign(project.x /
+                _rigidbody.transform.forward.x);
+            var v = project.magnitude;
 
-            _engine.Update(_gasPedal.Value, 
-                _transmission.RPM,
-                _transmission.Load);
-
-            _transmission.Update(_engine.Torque, 
-                _engine.OutputRPM,
-                wheelsRPM,
-                GetVelocity() * 3.6f);
-
-            _speedometer.UpdateValue(GetVelocity() * 3.6f);
-            _tachometer.UpdateValue(_engine.RPM);
-
-            _frontLeftWheel.Break(_breakPedal.Value * _breakForce);
-            _frontRightWheel.Break(_breakPedal.Value * _breakForce);
-            _rearLeftWheel.Break(_breakPedal.Value * _breakForce);
-            _rearRightWheel.Break(_breakPedal.Value * _breakForce);
+            return v * movementSign;
         }
 
         private float GetResistanceForce()
@@ -85,15 +76,47 @@ namespace Core.Car
             return airResistance * v * v * Mathf.Sign(v);
         }
 
-        public float GetVelocity()
+        private void HandleSteering()
         {
-            var project = Vector3.Project(_rigidbody.velocity,
-                _rigidbody.transform.forward);
-            var movementSign = Mathf.Sign(project.x / 
-                _rigidbody.transform.forward.x);
-            var v = project.magnitude;
+            _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;
+            _frontRightWheel.SteerAngle = _steeringWheel.SteerAngle;
+        }
 
-            return v * movementSign;
+        private void HandleEngine()
+        {
+            var resistance = GetResistanceForce();
+            var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
+
+            _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
+            _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
+
+            _engine.Update(_gasPedal.Value,
+                _transmission.RPM,
+                _transmission.Load);
+
+            _transmission.Update(_engine.Torque,
+                _engine.OutputRPM,
+                wheelsRPM,
+                GetVelocity() * 3.6f);
+        }
+
+        private void HandleDashboard()
+        {
+            _speedometer.UpdateValue(GetVelocity() * 3.6f);
+            _tachometer.UpdateValue(_engine.RPM);
+        }
+
+        private void HandleBreaking()
+        {
+            var breakValue = 
+                (_breakPedal.Value +
+                _parkingBreak.Break +
+                _transmission.Break) * _breakForce;
+
+            _frontRightWheel.Break(breakValue);
+            _frontLeftWheel.Break(breakValue);
+            _rearRightWheel.Break(breakValue);
+            _rearLeftWheel.Break(breakValue);
         }
     }
 }

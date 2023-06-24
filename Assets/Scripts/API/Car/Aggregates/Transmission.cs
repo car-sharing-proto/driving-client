@@ -31,6 +31,7 @@ namespace Core.Car
         public float Torque { get; private set; }
         public float RPM { get; private set; }
         public float Load { get; private set; }
+        public float Break { get; private set; }
         public int CurrentGear => _currentGear;
 
         public void Initialize()
@@ -67,9 +68,15 @@ namespace Core.Car
 
             UpdateTorque(inputTorque, inputRPM, outputRPM);
             UpdateGearShifting(outputRPM);
+            UpdateBreak();
         }
 
-        private void UpdateTorque(float inputTorque, 
+        private void UpdateBreak()
+        {
+            Break = Mode == TransmissionMode.PARKING ? 1.0f : 0.0f;
+        }
+
+        private void UpdateTorque(float inputTorque,
             float inputRPM, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
@@ -91,7 +98,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if(Mode != TransmissionMode.DRIVING)
+            if (Mode != TransmissionMode.DRIVING)
             {
                 _currentGear = 0;
 
@@ -108,7 +115,7 @@ namespace Core.Car
             {
                 UpshiftGear(1);
             }
-            else if(rpm < _gears[_currentGear].MinRPM * _accelerationFactor)
+            else if (rpm < _gears[_currentGear].MinRPM * _accelerationFactor)
             {
                 DownshiftGear(1);
             }
@@ -123,14 +130,14 @@ namespace Core.Car
 
             if (_currentGear < _gears.Length - count)
             {
-                if(_gears[_currentGear + 1].MinSpeed > _speed)
+                if (_gears[_currentGear + 1].MinSpeed > _speed)
                 {
                     return;
                 }
 
                 _currentGear += count;
                 _ratioShifter.Shift(
-                    _gears[_currentGear].Ratio, 
+                    _gears[_currentGear].Ratio,
                     _gears[_currentGear].ShiftSpeed);
             }
         }

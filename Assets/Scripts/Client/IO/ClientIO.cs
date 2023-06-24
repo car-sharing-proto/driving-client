@@ -96,6 +96,11 @@ public class ClientIO : MonoBehaviour
                 _userController.CarController.EngineSwitch();
             }
 
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _userController.CarController.ParkingBreakSwitch();
+            }
+
             gasSmoothPressing.FullPush =
                 breakSmoothPressing.FullPush =
                 Input.GetKey(KeyCode.LeftControl);
