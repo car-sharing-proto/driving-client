@@ -30,8 +30,10 @@ namespace Core.Character
             _planarVelocity = Vector3.zero;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
+            //_characterController.enabled = !IsSitting;
+
             if (IsSitting)
             {
                 ClearEnergy();
@@ -45,7 +47,7 @@ namespace Core.Character
             var maxVelocity = _speed * (IsRunning ? _runMultiplier : 1f);
 
             _planarVelocity *= _damping * decreaseAcceleration;
-            _planarVelocity += _acceleration * Time.fixedDeltaTime;
+            _planarVelocity += _acceleration * Time.deltaTime;
 
             if (_planarVelocity.magnitude > maxVelocity)
             {
@@ -58,7 +60,7 @@ namespace Core.Character
             }
             else
             {
-                _verticalVelocity += _gravity * Time.fixedDeltaTime *
+                _verticalVelocity += _gravity * Time.deltaTime *
                     UnityEngine.Physics.gravity.y;
             }
 
@@ -77,12 +79,13 @@ namespace Core.Character
             _rotation += rotationDelta;
             _rotation.y = Mathf.Clamp(_rotation.y, -90, 90);
             _headTransform.localEulerAngles = new Vector3(-_rotation.y, 0);
-            transform.eulerAngles = new Vector3(0, _rotation.x);
+            transform.localEulerAngles = new Vector3(0, _rotation.x);
         }
 
         public void SitDown(Transform placePoint)
         {
             IsSitting = true;
+            _characterController.enabled = false;
 
             SetParent(placePoint);
         }
@@ -93,14 +96,13 @@ namespace Core.Character
             Translate(leavePoint.position);
 
             IsSitting = false;
+            _characterController.enabled = true;
         }
 
         public void Translate(Vector3 position)
         {
             ClearEnergy();
-            _characterController.enabled = false;
             transform.position = position;
-            _characterController.enabled = true;
         }
 
         private void ClearEnergy()
