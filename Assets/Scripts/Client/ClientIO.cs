@@ -44,52 +44,68 @@ public class ClientIO : MonoBehaviour
         _speed.text = $"{(int)(_car.GetVelocity() * 3.6f)} km/h \n" +
             $"{_car.Transmission.CurrentGear + 1}";
 
-        if (Input.GetKey(KeyCode.W))
+        // temporary testing, I promise
+        var inCar = _userController.CharacterBody.IsSitting;
+        if (inCar) 
         {
-            gasSmoothPressing.Press();
-        }
-        else
-        {
-            gasSmoothPressing.Release();
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                gasSmoothPressing.Press();
+            }
+            else
+            {
+                gasSmoothPressing.Release();
+            }
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            breakSmoothPressing.Press();
-        }
-        else
-        {
-            breakSmoothPressing.Release();
-        }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                breakSmoothPressing.Press();
+            }
+            else
+            {
+                breakSmoothPressing.Release();
+            }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.DRIVE);
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.DRIVE);
+            }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.PARKING);
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                _car.SteeringWheel.Steer(-Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                _car.SteeringWheel.Steer(Time.deltaTime);
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                var state =
+                    _car.Engine.Starter.State == EngineState.STARTED ?
+                    EngineState.STOPED :
+                    EngineState.STARTED;
+
+                _car.Engine.Starter.SetState(state);
+            }
+
+            gasSmoothPressing.FullPush =
+                breakSmoothPressing.FullPush =
+                Input.GetKey(KeyCode.LeftControl);
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.PARKING);
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            var state = 
-                _car.Engine.Starter.State == EngineState.STARTED ?
-                EngineState.STOPED :
-                EngineState.STARTED;
-
-            _car.Engine.Starter.SetState(state);
-        }
-
-        gasSmoothPressing.FullPush =
-            breakSmoothPressing.FullPush =
-            Input.GetKey(KeyCode.LeftControl);
 
         _car.GasPedal.Value = gasSmoothPressing.Value;
         _car.BreakPedal.Value = breakSmoothPressing.Value;
