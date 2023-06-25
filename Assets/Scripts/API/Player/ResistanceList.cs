@@ -1,4 +1,4 @@
-namespace Core.Character
+namespace Core.Player
 {
     public static class EnvironmentResistance
     {

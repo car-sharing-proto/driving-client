@@ -7,8 +7,16 @@ namespace Core.Car
         [SerializeField] private Car _car;
         [SerializeField] private bool _isDriverSeat;
 
+        public CarController CarController { get; private set; }
         public bool IsTaken {  get; set; }
         public bool IsDriverSeat => _isDriverSeat;
-        public Car Car => _car;
+
+        private void Awake()
+        {
+            if(_isDriverSeat)
+            {
+                CarController = new CarController(_car);
+            }
+        }
     }
 }

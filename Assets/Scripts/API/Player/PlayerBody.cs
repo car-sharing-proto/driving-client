@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Core.Character
+namespace Core.Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterBody : MonoBehaviour, ISitable
+    public class PlayerBody : MonoBehaviour, ISitable
     {
         [SerializeField] private Transform _headTransform;
         [SerializeField] private float _climb = 2f;

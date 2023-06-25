@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Character
+namespace Core.Player
 {
     public interface ISitable
     {

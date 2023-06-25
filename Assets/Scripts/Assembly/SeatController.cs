@@ -1,17 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Core.Character.SeatPlace))]
+[RequireComponent(typeof(Core.Player.SeatPlace))]
 [RequireComponent(typeof(Core.Car.Seat))]
 public class SeatController : MonoBehaviour
 {
     [SerializeField] private Core.Car.Door _door;
-    private Core.Character.SeatPlace _playerSeat;
+    private Core.Player.SeatPlace _playerSeat;
     private Core.Car.Seat _carSeat;
-    private UserCharacterController _characterController;
+    private User _characterController;
 
     private void Start()
     {
-        _playerSeat = GetComponent<Core.Character.SeatPlace>();
+        _playerSeat = GetComponent<Core.Player.SeatPlace>();
         _carSeat = GetComponent<Core.Car.Seat>();
     }
 
@@ -29,21 +29,21 @@ public class SeatController : MonoBehaviour
         }
     }
 
-    public bool IsInteractable(UserCharacterController characterController)
+    public bool IsInteractable(User user)
     {
-        return _playerSeat.IsInteractable(characterController.CharacterBody);
+        return _playerSeat.IsInteractable(user.PlayerController.PlayerBody);
     }
 
-    public void Take(UserCharacterController characterController)
+    public void Take(User user)
     {
-        if (_playerSeat.Take(characterController.CharacterBody))
+        if (_playerSeat.Take(user.PlayerController.PlayerBody))
         {
-            _characterController = characterController;
+            _characterController = user;
 
             if (_carSeat.IsDriverSeat)
             {
                 _characterController.CarController =
-                    new Core.Car.CarController(_carSeat.Car);
+                    _carSeat.CarController;
             }
         }
     }

@@ -4,59 +4,51 @@ namespace Core.Car
     {
         private readonly Car _car;
 
+        public bool IsAvailable { get; set; }
+        public Car Car => _car;
+
         public CarController(Car car)
         {
             this._car = car;
         }
 
-        public void EngineSwitch()
+        public void Update(IControls controls)
         {
-            var state =
+            if(!IsAvailable) return;
+
+            _car.GasPedal.Value = controls.Gas;
+            _car.BreakPedal.Value = controls.Break;
+            _car.SteeringWheel.Steer(controls.SteerDelta);
+
+            if (controls.SetDrivingMode)
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.DRIVING);
+            }
+
+            if (controls.SetParkingMode)
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.PARKING);
+            }
+
+            if (controls.SetReverseMode)
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
+            }
+
+            if (controls.ParkingBreakSwitch)
+            {
+                _car.ParkingBreak.Switch();
+            }
+
+            if (controls.EngineSwitch)
+            {
+                var state =
                 _car.Engine.Starter.State == EngineState.STARTED ?
                 EngineState.STOPED :
                 EngineState.STARTED;
 
-            _car.Engine.Starter.SetState(state);
-        }
-
-        public void ParkingBreakSwitch()
-        {
-            _car.ParkingBreak.Switch();
-        }
-
-        public void GasPedalPress(float value)
-        {
-            _car.GasPedal.Value = value;
-        }
-
-        public void BreakPedalPress(float value)
-        {
-            _car.BreakPedal.Value = value;
-        }
-
-        public void SteerLeft(float speed)
-        {
-            _car.SteeringWheel.Steer(-speed);
-        }
-
-        public void SteerRight(float speed)
-        {
-            _car.SteeringWheel.Steer(speed);
-        }
-
-        public void SetParkingMode()
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.PARKING);
-        }
-
-        public void SetDrivingMode()
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.DRIVING);
-        }
-
-        public void SetReverseMode()
-        {
-            _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
+                _car.Engine.Starter.SetState(state);
+            }
         }
     }
 }

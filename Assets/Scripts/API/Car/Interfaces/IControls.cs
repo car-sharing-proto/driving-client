@@ -1,0 +1,14 @@
+namespace Core.Car
+{
+    public interface IControls
+    {
+        public float Gas { get; }
+        public float Break { get; }
+        public float SteerDelta { get; }
+        public bool SetDrivingMode { get; }
+        public bool SetParkingMode { get; }
+        public bool SetReverseMode { get; }
+        public bool EngineSwitch { get; }
+        public bool ParkingBreakSwitch { get; }
+    }
+}
