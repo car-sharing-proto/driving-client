@@ -1,66 +1,69 @@
 using UnityEngine;
 
-[System.Serializable]
-[RequireComponent(typeof(MeshRenderer))]
-public class LightFixture : MonoBehaviour
+namespace Core.Car
 {
-    [SerializeField, ColorUsage(true, true)] protected Color _color;
-    [SerializeField] protected float _minLight;
-    [SerializeField] protected float _maxLight;
-    [SerializeField] protected int _index;
-    [SerializeField] protected float _speed = 4.1f;
-
-    private MeshRenderer _renderer;
-    protected bool _state = false;
-    protected float _transition = 0f;
-
-    public void SetLight(bool state) 
+    [System.Serializable]
+    [RequireComponent(typeof(MeshRenderer))]
+    public class LightFixture : MonoBehaviour
     {
-        this._state = state;
-    }
+        [SerializeField, ColorUsage(true, true)] protected Color _color;
+        [SerializeField] protected float _minLight;
+        [SerializeField] protected float _maxLight;
+        [SerializeField] protected int _index;
+        [SerializeField] protected float _speed = 5f;
 
-    private void Start()
-    {
-        _renderer = GetComponent<MeshRenderer>();
-    }
+        private MeshRenderer _renderer;
+        protected bool _state = false;
+        protected float _transition = 0f;
 
-    protected void FixedUpdate()
-    {
-        UpdateTransition();
-        UpdateLight();
-    }
-
-    protected void UpdateTransition() 
-    {
-        if (_state)
+        public void SetLight(bool state)
         {
-            if (_transition < 1f)
+            this._state = state;
+        }
+
+        private void Start()
+        {
+            _renderer = GetComponent<MeshRenderer>();
+        }
+
+        protected void FixedUpdate()
+        {
+            UpdateTransition();
+            UpdateLight();
+        }
+
+        protected void UpdateTransition()
+        {
+            if (_state)
             {
-                _transition += _speed * Time.deltaTime;
+                if (_transition < 1f)
+                {
+                    _transition += _speed * Time.deltaTime;
+                }
+                else
+                {
+                    _transition = 1f;
+                }
             }
             else
             {
-                _transition = 1f;
+                if (_transition > 0f)
+                {
+                    _transition -= _speed * Time.deltaTime;
+                }
+                else
+                {
+                    _transition = 0f;
+                }
             }
         }
-        else
+
+        protected virtual void UpdateLight()
         {
-            if (_transition > 0f)
-            {
-                _transition -= _speed * Time.deltaTime;
-            }
-            else
-            {
-                _transition = 0f;
-            }
+            float t = Mathf.Lerp(_minLight, _maxLight, _transition);
+            float factor = Mathf.Pow(2, (t + 1));
+
+            _renderer.materials[_index].SetColor("_EmissionColor", _color * factor);
         }
-    }
-
-    protected virtual void UpdateLight()
-    {
-        float t = Mathf.Lerp(_minLight, _maxLight, _transition);
-        float factor = Mathf.Pow(2, (t + 1));
-
-        _renderer.materials[_index].SetColor("_EmissionColor", _color * factor);
     }
 }

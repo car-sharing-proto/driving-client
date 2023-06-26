@@ -30,6 +30,9 @@ public class ClientIO : MonoBehaviour,
     [SerializeField] private KeyCode _engineSwitchKey = KeyCode.T;
     [SerializeField] private KeyCode _parkingBreakKey = KeyCode.R;
     [SerializeField] private KeyCode _addPowerKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode _leftTurnKey = KeyCode.Comma;
+    [SerializeField] private KeyCode _rightTurnKey = KeyCode.Period;
+    [SerializeField] private KeyCode _emergencyKey = KeyCode.F;
     [Header("Other controls")]
     [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
 
@@ -40,6 +43,7 @@ public class ClientIO : MonoBehaviour,
     private User _userController;
     private bool _isPause = false;
 
+    // Car controls.
     public float Gas { get; private set; }
     public float Break { get; private set; }
     public float SteerDelta { get; private set; }
@@ -48,6 +52,11 @@ public class ClientIO : MonoBehaviour,
     public bool SetReverseMode { get; private set; }
     public bool EngineSwitch { get; private set; }
     public bool ParkingBreakSwitch { get; private set; }
+    public bool EmergencySwitch { get; private set; }
+    public bool LeftTurnSwitch { get; private set; }
+    public bool RightTurnSwitch { get; private set; }
+
+    // Character controls.
     public float RotationDeltaX { get; private set; }
     public float RotationDeltaY { get; private set; }
     public bool MoveForward { get; private set; }
@@ -127,6 +136,9 @@ public class ClientIO : MonoBehaviour,
         SetDrivingMode = Input.GetKeyDown(_setDrivingModeKey);
         SetReverseMode = Input.GetKeyDown(_setReverseModeKey);
         SetParkingMode = Input.GetKeyDown(_setParkingModeKey);
+        LeftTurnSwitch = Input.GetKeyDown(_leftTurnKey);
+        RightTurnSwitch = Input.GetKeyDown(_rightTurnKey);
+        EmergencySwitch = Input.GetKeyDown(_emergencyKey);
         RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
         EngineSwitch = Input.GetKeyDown(_engineSwitchKey);

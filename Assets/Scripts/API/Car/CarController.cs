@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Core.Car
 {
     public class CarController
@@ -38,6 +40,21 @@ namespace Core.Car
             if (controls.ParkingBreakSwitch)
             {
                 _car.ParkingBreak.Switch();
+            }
+
+            if (controls.LeftTurnSwitch)
+            {
+                _car.TurnLights.SwitchLeft();
+            }
+
+            if (controls.RightTurnSwitch)
+            {
+                _car.TurnLights.SwitchRight();
+            }
+
+            if (controls.EmergencySwitch)
+            {
+                _car.TurnLights.SwitchEmergency();
             }
 
             if (controls.EngineSwitch)

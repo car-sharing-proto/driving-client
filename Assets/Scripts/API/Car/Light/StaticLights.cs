@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public class LightController : MonoBehaviour
+    public class StaticLights : MonoBehaviour
     {
         [SerializeField] private Car _car;
         [SerializeField] private LightFixture[] _lights;

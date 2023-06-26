@@ -6,26 +6,27 @@ namespace Core.Car
     public class Car : MonoBehaviour
     {
         public const float c_velocityEps = 0.01f;
-
+        [Header("Physics")]
         [SerializeField] private Transform _centerOfMass;
-        [SerializeField] private Controller[] _controllers;
-
-        [SerializeField] private SteeringWheel _steeringWheel;
-
         [SerializeField] private Wheel _frontRightWheel;
         [SerializeField] private Wheel _frontLeftWheel;
         [SerializeField] private Wheel _rearRightWheel;
         [SerializeField] private Wheel _rearLeftWheel;
-
+        [SerializeField] private float _breakForce;
+        [SerializeField] private float _maxSpeed;
+        [Header("Controls")]
+        [SerializeField] private Controller[] _controllers;
+        [SerializeField] private SteeringWheel _steeringWheel;
         [SerializeField] private Tachometer _tachometer;
         [SerializeField] private Speedometer _speedometer;
         [SerializeField] private ParkingBreak _parkingBreak;
-
         [SerializeField] private Pedal _gasPedal;
         [SerializeField] private Pedal _breakPedal;
-        [SerializeField] private float _breakForce;
-        [SerializeField] private float _maxSpeed;
-
+        [Header("Lighting")]
+        [SerializeField] private TurnLights _turnLights;
+        [SerializeField] private LightGroup _stopLights;
+        [SerializeField] private LightGroup _backLights;
+        [Header("Engine")]
         [SerializeField] private Engine _engine;
         [SerializeField] private Transmission _transmission;
 
@@ -34,9 +35,10 @@ namespace Core.Car
         public Pedal GasPedal => _gasPedal;
         public Pedal BreakPedal => _breakPedal;
         public ParkingBreak ParkingBreak => _parkingBreak;
+        public SteeringWheel SteeringWheel => _steeringWheel;
         public Engine Engine => _engine;
         public Transmission Transmission => _transmission;
-        public SteeringWheel SteeringWheel => _steeringWheel;
+        public TurnLights TurnLights => _turnLights;
 
         private void Awake()
         {
@@ -52,6 +54,7 @@ namespace Core.Car
             HandleEngine();
             HandleDashboard();
             HandleBreaking();
+            HandleLighs();
         }
 
         public float GetVelocity()
@@ -117,6 +120,14 @@ namespace Core.Car
             _frontLeftWheel.Break(breakValue);
             _rearRightWheel.Break(breakValue);
             _rearLeftWheel.Break(breakValue);
+        }
+
+        private void HandleLighs()
+        {
+            _turnLights.Update();
+            _stopLights.SetLight(BreakPedal.Value > 0);
+            _backLights.SetLight(Transmission.Mode ==
+                TransmissionMode.REVERSE);
         }
     }
 }

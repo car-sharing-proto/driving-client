@@ -10,5 +10,8 @@ namespace Core.Car
         public bool SetReverseMode { get; }
         public bool EngineSwitch { get; }
         public bool ParkingBreakSwitch { get; }
+        public bool EmergencySwitch { get; }
+        public bool LeftTurnSwitch { get; }
+        public bool RightTurnSwitch { get; }
     }
 }
