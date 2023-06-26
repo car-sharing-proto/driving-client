@@ -14,7 +14,7 @@ namespace Core.Car
 
         public void Update(IControls controls)
         {
-            if(!IsAvailable) return;
+            if (!IsAvailable) return;
 
             _car.GasPedal.Value = controls.Gas;
             _car.BreakPedal.Value = controls.Break;

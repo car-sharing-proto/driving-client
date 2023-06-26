@@ -3,9 +3,9 @@ using Core.Player;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClientIO : MonoBehaviour, 
-    Core.Car.IControls, 
-    Core.Player.IControls 
+public class ClientIO : MonoBehaviour,
+    Core.Car.IControls,
+    Core.Player.IControls
 {
     [SerializeField] private GameObject _cursor;
     [SerializeField] private PlayerBody _playerBody;
@@ -58,7 +58,7 @@ public class ClientIO : MonoBehaviour,
     public bool IsJumping { get; private set; }
     public bool Leave { get; private set; }
 
-    private void Awake ()
+    private void Awake()
     {
         _userController = new()
         {
