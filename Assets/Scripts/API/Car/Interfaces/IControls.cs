@@ -13,5 +13,6 @@ namespace Core.Car
         public bool EmergencySwitch { get; }
         public bool LeftTurnSwitch { get; }
         public bool RightTurnSwitch { get; }
+        public bool HeadLightSwitch { get; }
     }
 }

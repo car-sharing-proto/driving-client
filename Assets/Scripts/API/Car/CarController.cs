@@ -57,6 +57,11 @@ namespace Core.Car
                 _car.TurnLights.SwitchEmergency();
             }
 
+            if (controls.HeadLightSwitch)
+            {
+                _car.HeadLights.Switch();
+            }
+
             if (controls.EngineSwitch)
             {
                 var state =

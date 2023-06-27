@@ -33,6 +33,7 @@ public class ClientIO : MonoBehaviour,
     [SerializeField] private KeyCode _leftTurnKey = KeyCode.Comma;
     [SerializeField] private KeyCode _rightTurnKey = KeyCode.Period;
     [SerializeField] private KeyCode _emergencyKey = KeyCode.F;
+    [SerializeField] private KeyCode _headLightKey = KeyCode.Tab;
     [Header("Other controls")]
     [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
 
@@ -55,6 +56,7 @@ public class ClientIO : MonoBehaviour,
     public bool EmergencySwitch { get; private set; }
     public bool LeftTurnSwitch { get; private set; }
     public bool RightTurnSwitch { get; private set; }
+    public bool HeadLightSwitch { get; private set; }
 
     // Character controls.
     public float RotationDeltaX { get; private set; }
@@ -139,6 +141,7 @@ public class ClientIO : MonoBehaviour,
         LeftTurnSwitch = Input.GetKeyDown(_leftTurnKey);
         RightTurnSwitch = Input.GetKeyDown(_rightTurnKey);
         EmergencySwitch = Input.GetKeyDown(_emergencyKey);
+        HeadLightSwitch = Input.GetKeyDown(_headLightKey);
         RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
         EngineSwitch = Input.GetKeyDown(_engineSwitchKey);

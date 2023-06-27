@@ -24,6 +24,7 @@ namespace Core.Car
         [SerializeField] private Pedal _breakPedal;
         [Header("Lighting")]
         [SerializeField] private TurnLights _turnLights;
+        [SerializeField] private HeadLights _headLights;
         [SerializeField] private LightGroup _stopLights;
         [SerializeField] private LightGroup _backLights;
         [Header("Engine")]
@@ -39,6 +40,7 @@ namespace Core.Car
         public Engine Engine => _engine;
         public Transmission Transmission => _transmission;
         public TurnLights TurnLights => _turnLights;
+        public HeadLights HeadLights => _headLights;
 
         private void Awake()
         {
@@ -124,10 +126,18 @@ namespace Core.Car
 
         private void HandleLighs()
         {
+            if(_engine.Starter.State == EngineState.STOPED &&
+                _headLights.State == HeadLightState.HIGH)
+            {
+                _headLights.State = HeadLightState.DIPPED;
+            }
+
+            _headLights.Update();
             _turnLights.Update();
             _stopLights.SetLight(BreakPedal.Value > 0);
-            _backLights.SetLight(Transmission.Mode ==
-                TransmissionMode.REVERSE);
+            _backLights.SetLight(
+                _engine.Starter.State == EngineState.STARTED &&
+                Transmission.Mode == TransmissionMode.REVERSE);
         }
     }
 }
