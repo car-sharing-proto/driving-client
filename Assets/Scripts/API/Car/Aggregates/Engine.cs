@@ -44,7 +44,7 @@ namespace Core.Car
             var feedback = outputRPM * load;
             var inputResistance =
                 1.0f - _resistanceCurve.Evaluate(feedback / MaxRPM);
-            var inputRPM = localGas * MaxRPM * _starter.Value;
+            var inputRPM = localGas * MaxRPM * _starter.RPMValue;
             var torqueRPM = (inputRPM - feedback) * inputResistance;
             Torque = torqueRPM / MaxRPM * MaxTorque;
             OutputRPM = inputRPM;

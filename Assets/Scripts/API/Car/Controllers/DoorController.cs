@@ -11,11 +11,11 @@ namespace Core.Car
             {
                 if(door.State != IOpenable.OpenState.CLOSED) 
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
     }
 }

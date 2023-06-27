@@ -18,7 +18,11 @@ namespace Core.Car
         private float _runningTransition;
 
         public EngineState State { get; private set; } = EngineState.STOPED;
-        public float Value => _runningValue;
+        public float RPMValue => _runningValue;
+        public bool IsStarting => 
+            State == EngineState.STARTED &&
+            _runningTransition > 0.0f &&
+            _runningTransition < 1.0f;
 
         public void SetState(EngineState state)
         {
