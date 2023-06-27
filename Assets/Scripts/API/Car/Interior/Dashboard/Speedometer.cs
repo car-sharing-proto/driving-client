@@ -10,7 +10,7 @@ namespace Core.Car
 
         public void UpdateValue(float speed)
         {
-            var ratio = speed / _maxSpeed;
+            var ratio = Mathf.Abs(speed) / _maxSpeed;
 
             if (ratio > 1)
             {

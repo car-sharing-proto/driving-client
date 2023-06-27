@@ -92,6 +92,7 @@ namespace Core.Car
             var resistance = GetResistanceForce();
             var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
 
+            _transmission.Lock = _engine.Starter.State == EngineState.STOPED;
             _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
 
