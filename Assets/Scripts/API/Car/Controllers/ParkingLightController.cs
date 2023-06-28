@@ -8,7 +8,7 @@ namespace Core.Car
 
         public override bool Check()
         {
-            return _car.Engine.Starter.State == EngineState.STARTED;
+            return _car.Engine.Enabled;
         }
     }
 }

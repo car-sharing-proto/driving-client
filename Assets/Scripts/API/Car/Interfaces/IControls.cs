@@ -8,6 +8,7 @@ namespace Core.Car
         public bool SetDrivingMode { get; }
         public bool SetParkingMode { get; }
         public bool SetReverseMode { get; }
+        public bool SetNeutralMode { get; }
         public bool EngineSwitch { get; }
         public bool ParkingBreakSwitch { get; }
         public bool EmergencySwitch { get; }

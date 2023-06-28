@@ -24,7 +24,8 @@ public class ClientIO : MonoBehaviour,
     [SerializeField] private KeyCode _breakKey = KeyCode.Q;
     [SerializeField] private KeyCode _setDrivingModeKey = KeyCode.O;
     [SerializeField] private KeyCode _setParkingModeKey = KeyCode.P;
-    [SerializeField] private KeyCode _setReverseModeKey = KeyCode.I;
+    [SerializeField] private KeyCode _setReverseModeKey = KeyCode.U;
+    [SerializeField] private KeyCode _setNeutralModeKey = KeyCode.I;
     [SerializeField] private KeyCode _steerRightKey = KeyCode.D;
     [SerializeField] private KeyCode _steerLeftKey = KeyCode.A;
     [SerializeField] private KeyCode _engineSwitchKey = KeyCode.T;
@@ -51,6 +52,7 @@ public class ClientIO : MonoBehaviour,
     public bool SetDrivingMode { get; private set; }
     public bool SetParkingMode { get; private set; }
     public bool SetReverseMode { get; private set; }
+    public bool SetNeutralMode { get; private set; }
     public bool EngineSwitch { get; private set; }
     public bool ParkingBreakSwitch { get; private set; }
     public bool EmergencySwitch { get; private set; }
@@ -138,6 +140,7 @@ public class ClientIO : MonoBehaviour,
         SetDrivingMode = Input.GetKeyDown(_setDrivingModeKey);
         SetReverseMode = Input.GetKeyDown(_setReverseModeKey);
         SetParkingMode = Input.GetKeyDown(_setParkingModeKey);
+        SetNeutralMode = Input.GetKeyDown(_setNeutralModeKey);
         LeftTurnSwitch = Input.GetKeyDown(_leftTurnKey);
         RightTurnSwitch = Input.GetKeyDown(_rightTurnKey);
         EmergencySwitch = Input.GetKeyDown(_emergencyKey);

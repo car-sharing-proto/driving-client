@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace Core.Car
 {
     public class CarController
@@ -37,6 +35,11 @@ namespace Core.Car
                 _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
             }
 
+            if (controls.SetNeutralMode)
+            {
+                _car.Transmission.SwitchMode(TransmissionMode.NEUTRAL);
+            }
+
             if (controls.ParkingBreakSwitch)
             {
                 _car.ParkingBreak.Switch();
@@ -64,12 +67,7 @@ namespace Core.Car
 
             if (controls.EngineSwitch)
             {
-                var state =
-                _car.Engine.Starter.State == EngineState.STARTED ?
-                EngineState.STOPED :
-                EngineState.STARTED;
-
-                _car.Engine.Starter.SetState(state);
+                _car.Engine.Starter.SwitchState();
             }
         }
     }

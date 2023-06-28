@@ -12,8 +12,10 @@ namespace Core.Car
     public class Starter
     {
         private const float c_startSpeed = 0.4f;
+
         [SerializeField] private AnimationCurve _startEngine;
         [SerializeField] private AnimationCurve _stopEngine;
+
         private float _runningValue;
         private float _runningTransition;
 
@@ -33,6 +35,16 @@ namespace Core.Car
             }
 
             State = state;
+        }
+
+        public void SwitchState()
+        {
+            var state = 
+                State == EngineState.STARTED ?
+                EngineState.STOPED:
+                EngineState.STARTED;
+
+            SetState(state);
         }
 
         public void Update()

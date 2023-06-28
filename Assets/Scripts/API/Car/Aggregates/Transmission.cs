@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public enum TransmissionMode : int
+    public enum TransmissionMode
     {
-        NEUTRAL = 0,
-        DRIVING = 1,
-        REVERSE = -1,
-        PARKING = 0
+        NEUTRAL,
+        DRIVING,
+        REVERSE,
+        PARKING
     }
 
     [System.Serializable]
@@ -38,6 +38,7 @@ namespace Core.Car
         public void Initialize()
         {
             _ratioShifter = new RatioShifter(_gears[0].Ratio);
+
             Mode = TransmissionMode.PARKING;
         }
 

@@ -11,8 +11,7 @@ namespace Core.Car
         {
             for(var i = 0; i < _lights.Length; i++)
             {
-                _lights[i].SetLight(
-                    _car.Engine.Starter.State == EngineState.STARTED);
+                _lights[i].SetLight(_car.Engine.Enabled);
             }
         }
     }

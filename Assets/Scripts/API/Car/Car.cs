@@ -92,7 +92,7 @@ namespace Core.Car
             var resistance = GetResistanceForce();
             var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
 
-            _transmission.Lock = _engine.Starter.State == EngineState.STOPED;
+            _transmission.Lock = !_engine.Enabled;
             _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
 
@@ -127,7 +127,7 @@ namespace Core.Car
 
         private void HandleLighs()
         {
-            if(_engine.Starter.State == EngineState.STOPED &&
+            if(!_engine.Enabled &&
                 _headLights.State == HeadLightState.HIGH)
             {
                 _headLights.State = HeadLightState.DIPPED;
@@ -137,7 +137,7 @@ namespace Core.Car
             _turnLights.Update();
             _stopLights.SetLight(BreakPedal.Value > 0);
             _backLights.SetLight(
-                _engine.Starter.State == EngineState.STARTED &&
+                _engine.Enabled &&
                 Transmission.Mode == TransmissionMode.REVERSE);
         }
     }

@@ -14,6 +14,7 @@ namespace Core.Car
         private float _baseGas;
 
         public Starter Starter => _starter;
+        public bool Enabled => _starter.State == EngineState.STARTED;
         public float MaxRPM => _maxRPM;
         public float MaxTorque => _maxTorque;
 
@@ -25,7 +26,6 @@ namespace Core.Car
         {
             _baseGas = _idlingRPM / MaxRPM;
         }
-
 
         public void Update(float inputGas, float outputRPM, float load)
         {
