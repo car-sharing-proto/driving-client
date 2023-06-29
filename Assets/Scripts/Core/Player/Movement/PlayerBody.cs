@@ -34,6 +34,7 @@ namespace Core.Player
         {
             if (IsSitting)
             {
+                
                 ClearEnergy();
                 return;
             }
