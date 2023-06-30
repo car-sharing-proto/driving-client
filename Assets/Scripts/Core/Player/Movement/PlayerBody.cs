@@ -115,6 +115,8 @@ namespace Core.Player
         {
             transform.SetParent(parentTransform);
             transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = Vector3.zero;
+            _headTransform.localEulerAngles = Vector3.zero;
         }
 
         private void RemoveParent()
