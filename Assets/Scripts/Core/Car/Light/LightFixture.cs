@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core.Car
 {
@@ -10,7 +11,8 @@ namespace Core.Car
         [SerializeField] private float _minLight;
         [SerializeField] private float _maxLight;
         [SerializeField] private int _index;
-        [SerializeField] private float _speed = 5f;
+        [SerializeField] private float _flashSpeed = 5f;
+        [SerializeField] private float _fadeSpeed = 5f;
 
         private MeshRenderer _renderer;
         private bool _state = false;
@@ -38,7 +40,7 @@ namespace Core.Car
             {
                 if (_transition < 1f)
                 {
-                    _transition += _speed * Time.deltaTime;
+                    _transition += _flashSpeed * Time.deltaTime;
                 }
                 else
                 {
@@ -49,7 +51,7 @@ namespace Core.Car
             {
                 if (_transition > 0f)
                 {
-                    _transition -= _speed * Time.deltaTime;
+                    _transition -= _fadeSpeed * Time.deltaTime;
                 }
                 else
                 {
