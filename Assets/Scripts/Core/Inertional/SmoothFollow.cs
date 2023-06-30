@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -14,7 +15,7 @@ namespace Core.Inertional
         private Vector3 _newPosition, _oldPosition;
         private Vector3 _newVelocity, _oldVelocity;
 
-        private float _velocity = 0;
+        private Vector3 _velocity;
         private const float c_speed = 0.05f;
         private const float c_harshness = 1000.0f;
 
@@ -31,24 +32,36 @@ namespace Core.Inertional
             _oldPosition = _newPosition;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            var t = Time.fixedDeltaTime;
+            //transform.position = 
+            //    Vector3.SmoothDamp(
+            //    transform.position,
+            //    _target.position, 
+            //    ref _velocity,
+            //    0.0f,
+            //    100);
+
+            //return;
+            var t = Time.deltaTime;
 
             _newPosition = _target.position;
-            //_oldPosition = Vector3.Lerp(_oldPosition, _newPosition, t);
+
             _newVelocity = (_newPosition - _oldPosition) / t;
-            //_oldVelocity = Vector3.Lerp(_oldVelocity, _newVelocity, t);
-            // Debug.Log(_newVelocity);
             _displace = (_newVelocity - _oldVelocity) / t;
-            //Debug.Log(_displace);
-            _oldPosition = _target.position;
+
             _oldVelocity = _newVelocity;
-            _velocity = _newVelocity.magnitude * t;
-            _shift += c_speed * t * _displace;
+            _velocity += (_displace );
+            _shift += (_newPosition - _oldPosition);
+            _shift *= 0.95f;
+            _oldPosition = _target.position;
+            //_velocity *= 0.95f;
 
+            //Debug.Log($"v {_newVelocity}");
+            //Debug.Log($"a {_displace}");
+            //Debug.Log($"s {_shift}");
 
-            transform.position = _target.position - _displace * 0.01f;
+            transform.position = _target.position - _shift * 0.001f;
 
             //CeilShift();
 

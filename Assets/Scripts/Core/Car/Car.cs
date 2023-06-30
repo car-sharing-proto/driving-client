@@ -81,6 +81,17 @@ namespace Core.Car
             return airResistance * v * v * Mathf.Sign(v);
         }
 
+        private float GetWheelsRPM()
+        {
+            return (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
+        }
+
+        private float GetTorqueEfficiency()
+        {
+            return (_frontLeftWheel.GetTorqueEfficiency() +
+                _frontRightWheel.GetTorqueEfficiency()) * 0.5f;
+        }
+
         private void HandleSteering()
         {
             _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;
@@ -90,11 +101,14 @@ namespace Core.Car
         private void HandleEngine()
         {
             var resistance = GetResistanceForce();
-            var wheelsRPM = (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
+            var torqueEfficiency = GetTorqueEfficiency();
+            var wheelsRPM = GetWheelsRPM();
 
             _transmission.Lock = !_engine.Enabled;
-            _frontLeftWheel.TransmitTorque(_transmission.Torque - resistance);
-            _frontRightWheel.TransmitTorque(_transmission.Torque - resistance);
+            _frontLeftWheel.TransmitTorque(
+                _transmission.Torque * torqueEfficiency - resistance);
+            _frontRightWheel.TransmitTorque(
+                _transmission.Torque * torqueEfficiency - resistance);
 
             _engine.Update(_gasPedal.Value,
                 _transmission.RPM,
@@ -114,7 +128,7 @@ namespace Core.Car
 
         private void HandleBreaking()
         {
-            var breakValue = 
+            var breakValue =
                 (_breakPedal.Value +
                 _parkingBreak.Break +
                 _transmission.Break) * _breakForce;
@@ -127,7 +141,7 @@ namespace Core.Car
 
         private void HandleLighs()
         {
-            if(!_engine.Enabled &&
+            if (!_engine.Enabled &&
                 _headLights.State == HeadLightState.HIGH)
             {
                 _headLights.State = HeadLightState.DIPPED;
