@@ -40,12 +40,12 @@ namespace Core.Player
             }
 
             var isGrounded = IsGrounded();
-            var decreaseAcceleration = isGrounded ?
+            var decreasing = isGrounded ?
                 EnvironmentResistance.Ground :
                 EnvironmentResistance.Air;
-            var maxVelocity = _speed * (IsRunning ? _runMultiplier : 1f);
+            var maxVelocity = _speed * (IsRunning ? _runMultiplier : 1.1f);
 
-            _planarVelocity *= _damping * decreaseAcceleration;
+            _planarVelocity *= Mathf.Pow(_damping * decreasing, Time.deltaTime);
             _planarVelocity += _acceleration * Time.deltaTime;
 
             if (_planarVelocity.magnitude > maxVelocity)
@@ -55,12 +55,12 @@ namespace Core.Player
 
             if (isGrounded)
             {
-                _verticalVelocity = IsJumping ? _jumpForce : 0;
+                _verticalVelocity = IsJumping ? _jumpForce : 0.0f;
             }
             else
             {
-                _verticalVelocity += _gravity * Time.deltaTime *
-                    UnityEngine.Physics.gravity.y;
+                _verticalVelocity += _gravity *
+                    Time.deltaTime * Physics.gravity.y;
             }
 
             _characterController.Move(_planarVelocity 
