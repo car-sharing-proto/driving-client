@@ -4,7 +4,7 @@ namespace Core.Car
 {
     public class Wheel : MonoBehaviour
     {
-        private const float c_minTorqueMultiplier = 0.2f;
+        private const float c_minTorqueMultiplier = 0.05f;
 
         [SerializeField] private WheelCollider _collider;
         [SerializeField] private Transform _wheel;

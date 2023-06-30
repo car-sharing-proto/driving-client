@@ -1125,6 +1125,90 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].time
+      value: 0.018249512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].value
+      value: 1.0029541
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].value
+      value: 0.09320068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].value
+      value: 0.015930176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].inSlope
+      value: -130.80353
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].inSlope
+      value: -0.39721477
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].inSlope
+      value: -0.018507155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].outSlope
+      value: -130.80353
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].inWeight
+      value: 0.57767063
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].outSlope
+      value: -0.39721477
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].inWeight
+      value: 0.18662661
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].outSlope
+      value: -0.018507155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].outWeight
+      value: 0.04698324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _engine._differenceCurve.m_Curve.Array.data[2].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1392951274247384971, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_Name
       value: kia rio x unity edit
@@ -1174,6 +1258,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Center.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForceAppPointDistance
       value: -0.1
       objectReference: {fileID: 0}
@@ -1183,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 9000
+      value: 18000
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
@@ -1195,15 +1287,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumSlip
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteSlip
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumValue
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_ExtremumSlip
@@ -1215,7 +1307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742569746833, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_AsymptoteSlip
@@ -1270,6 +1362,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Center.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForceAppPointDistance
       value: -0.1
       objectReference: {fileID: 0}
@@ -1279,7 +1379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 9000
+      value: 18000
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
@@ -1291,15 +1391,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumSlip
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteSlip
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumValue
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_ExtremumSlip
@@ -1311,7 +1411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742713849450, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_AsymptoteSlip
@@ -1326,6 +1426,14 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Center.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForceAppPointDistance
       value: -0.1
       objectReference: {fileID: 0}
@@ -1335,7 +1443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 9000
+      value: 18000
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
@@ -1347,15 +1455,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumSlip
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteSlip
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumValue
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_ExtremumSlip
@@ -1367,7 +1475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128742715924401, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_AsymptoteSlip
@@ -1402,6 +1510,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Center.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForceAppPointDistance
       value: -0.1
       objectReference: {fileID: 0}
@@ -1411,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 9000
+      value: 18000
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
@@ -1423,15 +1539,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumSlip
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteSlip
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_ExtremumValue
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_ExtremumSlip
@@ -1443,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999128743268032780, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
       propertyPath: m_SidewaysFriction.m_AsymptoteSlip
