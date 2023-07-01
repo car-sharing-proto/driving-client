@@ -128,15 +128,18 @@ namespace Core.Car
 
         private void HandleBreaking()
         {
-            var breakValue =
+            var frontBreakValue =
                 (_breakPedal.Value +
-                _parkingBreak.Break +
                 _transmission.Break) * _breakForce;
 
-            _frontRightWheel.Break(breakValue);
-            _frontLeftWheel.Break(breakValue);
-            _rearRightWheel.Break(breakValue);
-            _rearLeftWheel.Break(breakValue);
+            var rearBreakValue =
+                (_breakPedal.Value +
+                _parkingBreak.Break) * _breakForce;
+
+            _frontRightWheel.Break(frontBreakValue);
+            _frontLeftWheel.Break(frontBreakValue);
+            _rearRightWheel.Break(rearBreakValue);
+            _rearLeftWheel.Break(rearBreakValue);
         }
 
         private void HandleLighs()
