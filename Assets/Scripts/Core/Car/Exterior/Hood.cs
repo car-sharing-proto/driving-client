@@ -9,6 +9,7 @@ namespace Core.Car
         private void Update()
         {
             _engineCompartment.SetActive(State != IOpenable.OpenState.CLOSED);
+            _collider.enabled = IsInteractable;
         }
     }
 }

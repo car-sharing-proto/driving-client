@@ -24,7 +24,7 @@ namespace Core.Player
         public bool IsJumping { get; set; } = false;
         public bool IsSitting { get; set; } = false;
 
-        private void Start()
+        private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
             _planarVelocity = Vector3.zero;

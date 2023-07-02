@@ -15,7 +15,6 @@ namespace Core.Car
         [SerializeField] private float _breakForce;
         [SerializeField] private float _maxSpeed;
         [Header("Controls")]
-        [SerializeField] private Controller[] _controllers;
         [SerializeField] private SteeringWheel _steeringWheel;
         [SerializeField] private Tachometer _tachometer;
         [SerializeField] private Speedometer _speedometer;

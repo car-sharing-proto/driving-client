@@ -11,9 +11,10 @@ namespace Core.Car
         [SerializeField] private Vector3 _endAngle;
         [SerializeField] private float _openSpeed;
 
+        protected MeshCollider _collider;
+
         private Animation.Vector3_LinearAnimation _openAnimation;
         private Animation.Vector3_LinearAnimation _closeAnimation;
-        private MeshCollider _collider;
 
         public Vector3 StartAngle => _startAngle;
         public Vector3 EndAngle => _endAngle;
