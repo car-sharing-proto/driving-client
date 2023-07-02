@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -13,6 +14,8 @@ namespace Core.Car
     [System.Serializable]
     public class Transmission
     {
+        private const float c_speedEps = 0.1f;
+
         [SerializeField] private AnimationCurve _fluidCouplingCurve;
         [SerializeField] private Gear[] _gears;
         [SerializeField] private float _reverseGearRatio = 3.44f;
@@ -61,7 +64,7 @@ namespace Core.Car
                 return;
             }
 
-            if (_speed <= 0.01f)
+            if (Mathf.Abs(_speed) <= c_speedEps)
             {
                 Mode = mode;
             }

@@ -10,6 +10,8 @@ namespace Core.Car.Experimental
             public Vector3[] vertices;
         }
 
+        private const string _ignoreTag = "ignore_car_collision";
+
         [SerializeField] private float _maxMoveDelta = 1.0f;
         [SerializeField] private float _maxCollisionStrength = 50.0f;
         [SerializeField] private float _verticalForceDamp = 0.1f;
@@ -63,14 +65,17 @@ namespace Core.Car.Experimental
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (collision.gameObject.CompareTag(_ignoreTag))
+            {
+                return;
+            }
+
             if (DateTime.Now - _lastCollisionTime < _minCollisionTimeStep)
             {
                 return;
             }
 
             _lastCollisionTime = DateTime.Now;
-
-            Debug.Log("Boom");
 
             var collisionRelativeVelocity = collision.relativeVelocity;
             var colliderPoint = transform.position - collision.contacts[0].point;

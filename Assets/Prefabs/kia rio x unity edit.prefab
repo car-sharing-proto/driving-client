@@ -114,7 +114,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 0
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &136049329
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +217,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 3
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &136049331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +345,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 3
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &234164003
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +461,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &297131035
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +577,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 3
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &356818436
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +680,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 3.5
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &356818441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,7 +795,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4.5
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &417100019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,7 +909,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 1
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &509880049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1011,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -2
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &638992619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1127,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 0
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &696184380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1243,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &721547721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1345,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 10
+  _flashSpeed: 12
+  _fadeSpeed: 12
 --- !u!1 &739958696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1447,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -2
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &776370453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,7 +1563,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &803246267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1679,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 0
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &824749648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1795,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &914135520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,7 +1897,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 1
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &918024035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +1999,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 1
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &992624347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,7 +2102,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 3
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &992624349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,7 +2217,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1086873177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2325,7 +2345,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1211527415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2447,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 1
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1259027003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2563,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1337008108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,7 +2679,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -2
   _index: 0
-  _speed: 10
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1430643589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,7 +2795,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1495515687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,7 +2911,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 0
   _index: 0
-  _speed: 10
+  _flashSpeed: 8
+  _fadeSpeed: 3
 --- !u!1 &1537616063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,7 +3013,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 10
+  _flashSpeed: 12
+  _fadeSpeed: 12
 --- !u!1 &1637870529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,7 +3116,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1637870530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,7 +3244,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1759347121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,7 +3388,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1793559609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3519,7 +3549,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &1908558246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,7 +3652,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 4
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1908558248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3735,7 +3767,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 3.5
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1957722269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3849,7 +3882,8 @@ MonoBehaviour:
   _minLight: 0
   _maxLight: 3
   _index: 0
-  _speed: 15
+  _flashSpeed: 17
+  _fadeSpeed: 12
 --- !u!114 &1977045926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3976,7 +4010,8 @@ MonoBehaviour:
   _minLight: -5
   _maxLight: 7
   _index: 0
-  _speed: 5
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &2099051497
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,7 +4126,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -2
   _index: 0
-  _speed: 10
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &77301190939726262
 GameObject:
   m_ObjectHideFlags: 0
@@ -5764,7 +5800,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -1
   _index: 2
-  _speed: 4.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &952900149068798543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5871,7 +5908,8 @@ MonoBehaviour:
   _minLight: -2
   _maxLight: -0.4
   _index: 0
-  _speed: 4.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &993326649508415290
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,7 +6176,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346755706329117014}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -6167,7 +6205,8 @@ GameObject:
   - component: {fileID: 66013931}
   - component: {fileID: 66013932}
   - component: {fileID: 66013940}
-  m_Layer: 0
+  - component: {fileID: 315743519}
+  m_Layer: 2
   m_Name: kia rio x unity edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6229,7 +6268,7 @@ MonoBehaviour:
   _rearRightWheel: {fileID: 2999128742713849449}
   _rearLeftWheel: {fileID: 2999128743268032819}
   _breakForce: 1200
-  _maxSpeed: 100
+  _maxSpeed: 150
   _controllers:
   - {fileID: 1392951274247384965}
   - {fileID: 1392951274247384966}
@@ -6659,6 +6698,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _signalLamp: {fileID: 1086873177}
   _car: {fileID: 1392951274247384964}
+--- !u!65 &315743519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392951274247384971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.5, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1451877372335388320
 GameObject:
   m_ObjectHideFlags: 0
@@ -8186,7 +8238,8 @@ MonoBehaviour:
   _minLight: -1
   _maxLight: 3
   _index: 0
-  _speed: 4.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &2731468087604375739
 GameObject:
   m_ObjectHideFlags: 0
@@ -9932,7 +9985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999128743717659878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11102,7 +11155,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: 3
   _index: 4
-  _speed: 12
+  _flashSpeed: 15
+  _fadeSpeed: 3
 --- !u!1 &3802731199426222099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11405,7 +11459,8 @@ MonoBehaviour:
   _minLight: -10
   _maxLight: -1
   _index: 3
-  _speed: 4.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &3938575588004319091
 GameObject:
   m_ObjectHideFlags: 0
@@ -13259,7 +13314,8 @@ MonoBehaviour:
   _minLight: -1
   _maxLight: 3
   _index: 0
-  _speed: 4.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &5604959164009027493
 GameObject:
   m_ObjectHideFlags: 0
@@ -13360,7 +13416,8 @@ MonoBehaviour:
   _minLight: -2
   _maxLight: 2.5
   _index: 0
-  _speed: 1.1
+  _flashSpeed: 5
+  _fadeSpeed: 5
 --- !u!1 &5680927356342664063
 GameObject:
   m_ObjectHideFlags: 0
