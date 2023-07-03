@@ -3,8 +3,8 @@ using Core.Car;
 
 public class UserController
 {
-    public CarController CarController { get; set; }
-    public PlayerController PlayerController { get; set; }
+    public CarController CarController { get; private set; }
+    public PlayerController PlayerController { get; private set; }
 
     public UserController (
         CarController carController,

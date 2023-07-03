@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.ViewProber;
+using Core.GameManagment;
 
 [Serializable]
 public class ClientIO :
@@ -43,9 +44,7 @@ public class ClientIO :
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f);
 
     private List<ViewProbeHolder> _viewProbeHolders;
-
-    // State controls.
-    public bool IsPause { get; private set; }
+    private GameState _gameState;
 
     // UI controls.
     public bool IsFocused { get; private set; }
@@ -76,9 +75,11 @@ public class ClientIO :
     public bool IsJumping { get; private set; }
     public bool Leave { get; private set; }
 
-    public void Initialize(ViewProbeHolder[] viewProbeHolders)
+    public void Initialize(GameState gameState, ViewProbeHolder[] viewProbeHolders)
     {
-        _viewProbeHolders = new List<ViewProbeHolder>(viewProbeHolders);
+        this._gameState = gameState;
+        this._viewProbeHolders = new List<ViewProbeHolder>(viewProbeHolders);
+
         MouseController.SetVisibility(false);
     }
 
@@ -164,7 +165,7 @@ public class ClientIO :
     {
         if (Input.GetKeyDown(_pauseKey))
         {
-            IsPause = !IsPause;
+            _gameState.SwitchPauseState();
         }
     }
 }

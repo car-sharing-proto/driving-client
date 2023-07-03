@@ -1,3 +1,4 @@
+using Core.GameManagment;
 using UnityEngine;
 
 public class ClientUI : MonoBehaviour
@@ -5,9 +6,11 @@ public class ClientUI : MonoBehaviour
     [SerializeField] private GameObject _cursor;
 
     private ClientIO _clientIO;
+    private GameState _gameState;
 
-    public void Initialize(ClientIO clientIO)
+    public void Initialize(GameState _gameState, ClientIO clientIO)
     {
+        this._gameState = _gameState;
         this._clientIO = clientIO;
     }
 
@@ -15,6 +18,6 @@ public class ClientUI : MonoBehaviour
     {
         _cursor.SetActive(_clientIO.IsFocused);
 
-        MouseController.SetVisibility(_clientIO.IsPause);
+        MouseController.SetVisibility(_gameState.IsPause);
     }
 }
