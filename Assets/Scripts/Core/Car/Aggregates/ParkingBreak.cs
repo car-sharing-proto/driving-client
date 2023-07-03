@@ -24,7 +24,7 @@ namespace Core.Car
         public Vector3 EndAngle => _endAngle;
         public ParkingBreakState State { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             State = ParkingBreakState.RAISED;
 

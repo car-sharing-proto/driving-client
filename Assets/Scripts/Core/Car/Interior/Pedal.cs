@@ -6,28 +6,16 @@ namespace Core.Car
     {
         [SerializeField] private Vector3 _minAngle;
         [SerializeField] private Vector3 _maxAngle;
-        private readonly float _minValue = 0;
-        private readonly float _maxValue = 1;
         private float _value = 0;
 
-        public bool IsPressed => _value != _minValue;
-        public bool IsFullyPressed => _value == _maxValue;
+        public bool IsPressed => _value != 0.0f;
+        public bool IsFullyPressed => _value == 1.0f;
+
         public float Value
         {
             set
             {
-                if (value < _minValue)
-                {
-                    this._value = _minValue;
-                }
-                else if (value > _maxValue)
-                {
-                    this._value = _maxValue;
-                }
-                else
-                {
-                    this._value = value;
-                }
+                _value = Mathf.Clamp01(value);
             }
 
             get
@@ -38,9 +26,8 @@ namespace Core.Car
 
         private void Update()
         {
-            transform.localEulerAngles = 
-                Vector3.Lerp(_minAngle, _maxAngle, 
-                (_value - _minValue) / (_maxValue - _minValue));
+            transform.localEulerAngles =
+                Vector3.Lerp(_minAngle, _maxAngle, _value);
         }
     }
 }

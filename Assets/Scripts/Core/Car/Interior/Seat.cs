@@ -15,6 +15,7 @@ namespace Core.Car
         {
             if(_isDriverSeat)
             {
+                // TODO: Remove this cringe.
                 CarController = new CarController(_car);
             }
         }

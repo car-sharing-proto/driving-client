@@ -11,7 +11,7 @@ namespace Core.Car
     [System.Serializable]
     public class Starter
     {
-        private const float c_startSpeed = 0.4f;
+        private const float c_transitionSpeed = 0.4f;
 
         [SerializeField] private AnimationCurve _startEngine;
         [SerializeField] private AnimationCurve _stopEngine;
@@ -51,12 +51,12 @@ namespace Core.Car
         {
             if (State == EngineState.STARTED && _runningTransition < 1.0f)
             {
-                _runningTransition += c_startSpeed * Time.deltaTime;
+                _runningTransition += c_transitionSpeed * Time.deltaTime;
                 _runningValue = _startEngine.Evaluate(_runningTransition);
             }
-            if (State == EngineState.STOPED && _runningValue > 0.0f)
+            if (State == EngineState.STOPED && _runningTransition > 0.0f)
             {
-                _runningTransition -= c_startSpeed * Time.deltaTime;
+                _runningTransition -= c_transitionSpeed * Time.deltaTime;
                 _runningValue = _stopEngine.Evaluate(_runningTransition);
             }
 

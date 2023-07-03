@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Level" Collapsed="true">
+    <Position X="27.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Assembly\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeatController" Collapsed="true">
+    <Position X="27.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAgAECAAAAAAAECAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Assembly\SeatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientIO" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KQRQIwoERAoMgQAgACEdQlDiEIFAABgMQAAAIEQAAEA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\ClientIO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MouseController" Collapsed="true">
+    <Position X="24.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\MouseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Raycaster" Collapsed="true">
+    <Position X="24.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAQAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\Raycaster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmoothPressing" Collapsed="true">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAIAAAAAAAABAAAAAAAAAAIAAAAQAAgABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\SmoothPressing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User" Collapsed="true">
+    <Position X="27.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAEAAAAUAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewProbeHolder" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\ViewProbe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewProbe&lt;T&gt;" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAhAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Client\IO\ViewProbe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaterialBrightness" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Dashboard\MaterialBrightness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Animation.LinearAnimation&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAgAAAAAAAAAAAAEAAAAAABAABBAQAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Animation\LinearAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Animation.Vector3_LinearAnimation" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Animation\Vector3_LinearAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Cameras.FPCamera" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAAAAAAgAAAAAAAAAAAAAAACAAAAAAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Cameras\FPCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Cameras.MovableCamera" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAABAQAAAAAAAAAAAAAAAAAAACAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Cameras\MovableCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Engine" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAYAADIQQCAgBAAABhAAAAABAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Gear" Collapsed="true">
+    <Position X="24.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAABIAAAIAAAAAgAGAAQAAAABAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Gear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.ParkingBreak" Collapsed="true">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAABAAAIAAAAAEAAAAAABAAAAAAAAJBIIAAFA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\ParkingBreak.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.RatioShifter" Collapsed="true">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAgAAAAAAJAAAggAAAAACAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\RatioShifter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Starter" Collapsed="true">
+    <Position X="26" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwABAAAAAAAAAAAIAAAAAICAAAAAwIIAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Starter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Transmission" Collapsed="true">
+    <Position X="33" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQYgAAAAIECgRAAAAQEKgEIAAADAAAABAAABAIIBAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Transmission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Car" Collapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAQEIKAAlBAEggCBBQAAAMQEAAACGIKDBBAQCAChkQ=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.CarController" Collapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\CarController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.BatteryController" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\BatteryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.CheckEngineController" Collapsed="true">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\CheckEngineController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Controller" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.DippedLightController" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\DippedLightController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.DoorController" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\DoorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.HighLightController" Collapsed="true">
+    <Position X="19.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\HighLightController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.HoodController" Collapsed="true">
+    <Position X="21.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\HoodController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.OilController" Collapsed="true">
+    <Position X="1.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\OilController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.ParkingBreakController" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\ParkingBreakController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.ParkingLightController" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\ParkingLightController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.TrunkController" Collapsed="true">
+    <Position X="12.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Controllers\TrunkController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Door" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAACCEAAAAAAIABAACAAAAAJBIKAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Exterior\Door.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Core.Car.Hood" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Exterior\Hood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Wheel" Collapsed="true">
+    <Position X="29.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAACAAEAAAQgAABUAAAAAAEAACAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Exterior\Wheel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.SignalLamp" Collapsed="true">
+    <Position X="31.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAAIAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Dashboard\SignalLamp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Speedometer" Collapsed="true">
+    <Position X="24.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAABAAACAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Dashboard\Speedometer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Tachometer" Collapsed="true">
+    <Position X="31.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAABIAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Dashboard\Tachometer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Pedal" Collapsed="true">
+    <Position X="27.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAAAAAAAABAAAAAAAEgAAAAAAAAAgAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Pedal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Seat" Collapsed="true">
+    <Position X="26" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAEAAAAAEAwAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\Seat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.SteeringWheel" Collapsed="true">
+    <Position X="29.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAQAADAAAAEABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\SteeringWheel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.TransmissionSelector" Collapsed="true">
+    <Position X="24.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAgAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAACAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interior\TransmissionSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.HeadLights" Collapsed="true">
+    <Position X="26" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAEAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\HeadLights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.LightFixture" Collapsed="true">
+    <Position X="29.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAIgACCAAAgCAIEEIAAAAAAAAAAAAQAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\LightFixture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.LightGroup" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\LightGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.StaticLights" Collapsed="true">
+    <Position X="27.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\StaticLights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.TurnLights" Collapsed="true">
+    <Position X="26" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAoEQAAAAAAQABAAAAAAAAAAAAAAAAgADAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\TurnLights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Car.Experimental.CarDamage" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQEAAAgCAAARAAAABAAAgCAGAEQAAIAAAACAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Damage\CarDamage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Player.PlayerController" Collapsed="true">
+    <Position X="31.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Controller\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Player.SeatPlace" Collapsed="true">
+    <Position X="29.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUACAAAAAAAAEAAgAAAAAAAEBQAACAAAAEAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Interactable\SeatPlace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core.Player.PlayerBody" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIRAQQAAAIIAAIAQAAADSEAAAAAAEAAgDEEkCQAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Movement\PlayerBody.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Core.Player.EnvironmentResistance" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Physics\ResistanceList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Core.Car.IControls" Collapsed="true">
+    <Position X="24.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAQAoMAAAAAAAEAABAAIAAAAgAAAAAAEQAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interfaces\IControls.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Core.Car.IFunctional" Collapsed="true">
+    <Position X="27.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interfaces\IFunctional.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Core.Car.IOpenable" Collapsed="true">
+    <Position X="29.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAIBICAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Interfaces\IOpenable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Core.Player.IControls" Collapsed="true">
+    <Position X="26" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAAAAAIAgAAAAAAAQAAAAAEAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Interfaces\IControls.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Core.Player.ISitable" Collapsed="true">
+    <Position X="31.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAEgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Interfaces\ISitable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Core.Car.ParkingBreakState">
+    <Position X="29.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\ParkingBreak.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Core.Car.EngineState">
+    <Position X="24.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Starter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Core.Car.TransmissionMode">
+    <Position X="31.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAQAACAAAgAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Aggregates\Transmission.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Core.Car.HeadLightState">
+    <Position X="26" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Car\Light\HeadLights.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Core.Player.Movement">
+    <Position X="27.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAgAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Player\Movement\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

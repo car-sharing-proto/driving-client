@@ -22,7 +22,7 @@ namespace Core.Car
 
         public bool IsInteractable => State is OpenState.OPEN or OpenState.CLOSED;
 
-        private void Start()
+        private void Awake()
         {
             State = OpenState.CLOSED;
 

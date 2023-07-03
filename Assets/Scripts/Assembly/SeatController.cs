@@ -9,7 +9,7 @@ public class SeatController : MonoBehaviour
     private Core.Car.Seat _carSeat;
     private User _characterController;
 
-    private void Start()
+    private void Awake()
     {
         _playerSeat = GetComponent<Core.Player.SeatPlace>();
         _carSeat = GetComponent<Core.Car.Seat>();
@@ -42,6 +42,7 @@ public class SeatController : MonoBehaviour
 
             if (_carSeat.IsDriverSeat)
             {
+                // TODO: Remove this cringe.
                 _characterController.CarController =
                     _carSeat.CarController;
             }

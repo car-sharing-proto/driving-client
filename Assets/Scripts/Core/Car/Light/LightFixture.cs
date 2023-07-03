@@ -23,7 +23,7 @@ namespace Core.Car
             this._state = state;
         }
 
-        private void Start()
+        private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
         }
