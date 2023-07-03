@@ -2,31 +2,43 @@ namespace Core.Player
 {
     public class PlayerController
     {
-        private readonly PlayerBody _playerBody;
+        private readonly IControls _controls;
+
+        private PlayerBody _playerBody;
 
         public bool IsAvailable { get; set; }
+
         public PlayerBody PlayerBody => _playerBody;
 
-        public PlayerController(PlayerBody playerBody)
+        public PlayerController(IControls controls)
+        {
+            this._controls = controls;
+
+            IsAvailable = true;
+        }
+
+        public void SetPlayerBody(PlayerBody playerBody)
         {
             this._playerBody = playerBody;
         }
 
-        public void Update(IControls controls)
+        public void Update()
         {
-            var forward = IsAvailable && controls.MoveForward ?
+            if(_playerBody == null) return;
+
+            var forward = IsAvailable && _controls.MoveForward ?
                 Movement.POSITIVE :
                 Movement.NONE;
 
-            var back = IsAvailable && controls.MoveBack ?
+            var back = IsAvailable && _controls.MoveBack ?
                 Movement.NEGATIVE :
                 Movement.NONE;
 
-            var right = IsAvailable && controls.MoveRight ?
+            var right = IsAvailable && _controls.MoveRight ?
                 Movement.POSITIVE :
                 Movement.NONE;
 
-            var left = IsAvailable && controls.MoveLeft ?
+            var left = IsAvailable && _controls.MoveLeft ?
                 Movement.NEGATIVE :
                 Movement.NONE;
 
@@ -35,17 +47,17 @@ namespace Core.Player
 
             _playerBody.Move(horizontal, vertical);
 
-            _playerBody.IsRunning = IsAvailable && controls.IsRunning;
-            _playerBody.IsJumping = IsAvailable && controls.IsJumping;
+            _playerBody.IsRunning = IsAvailable && _controls.IsRunning;
+            _playerBody.IsJumping = IsAvailable && _controls.IsJumping;
 
             var rotationDelta = new UnityEngine.Vector3(
-                IsAvailable ? controls.RotationDeltaX : 0.0f,
-                IsAvailable ? controls.RotationDeltaY : 0.0f
+                IsAvailable ? _controls.RotationDeltaX : 0.0f,
+                IsAvailable ? _controls.RotationDeltaY : 0.0f
             );
 
             _playerBody.UpdateView(rotationDelta);
 
-            if (IsAvailable && controls.Leave)
+            if (IsAvailable && _controls.Leave)
             {
                 _playerBody.IsSitting = false;
             }

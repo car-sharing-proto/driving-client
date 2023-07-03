@@ -1,15 +1,13 @@
-using Core.Car;
-using Core.Player;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.ViewProber;
 
-public class ClientIO : MonoBehaviour,
+[Serializable]
+public class ClientIO :
     Core.Car.IControls,
     Core.Player.IControls
 {
-    [SerializeField] private GameObject _cursor;
-    [SerializeField] private PlayerBody _playerBody;
-
     [Header("Character controls")]
     [SerializeField] private KeyCode _forwardKey = KeyCode.W;
     [SerializeField] private KeyCode _backKey = KeyCode.S;
@@ -18,7 +16,8 @@ public class ClientIO : MonoBehaviour,
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _runKey = KeyCode.LeftControl;
     [SerializeField] private KeyCode _leaveKey = KeyCode.LeftShift;
-    [SerializeField] private float _mouseSensitivity = 10;
+    [SerializeField] private float _mouseSensitivity = 2;
+
     [Header("Car controls")]
     [SerializeField] private KeyCode _gasKey = KeyCode.W;
     [SerializeField] private KeyCode _breakKey = KeyCode.Q;
@@ -35,15 +34,21 @@ public class ClientIO : MonoBehaviour,
     [SerializeField] private KeyCode _rightTurnKey = KeyCode.Period;
     [SerializeField] private KeyCode _emergencyKey = KeyCode.F;
     [SerializeField] private KeyCode _headLightKey = KeyCode.Tab;
+
     [Header("Other controls")]
     [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
+    [SerializeField] private KeyCode _interactKey = KeyCode.E;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f);
 
     private List<ViewProbeHolder> _viewProbeHolders;
-    private User _userController;
-    private bool _isPause = false;
+
+    // State controls.
+    public bool IsPause { get; private set; }
+
+    // UI controls.
+    public bool IsFocused { get; private set; }
 
     // Car controls.
     public float Gas { get; private set; }
@@ -71,40 +76,20 @@ public class ClientIO : MonoBehaviour,
     public bool IsJumping { get; private set; }
     public bool Leave { get; private set; }
 
-    private void Awake()
+    public void Initialize(ViewProbeHolder[] viewProbeHolders)
     {
-        _userController = new()
-        {
-            PlayerController = new(_playerBody)
-        };
-
-        _viewProbeHolders = new()
-        {
-            new ViewProbe<IFunctional>(
-                _playerBody.HeadTransform,
-                3f, probe => probe.Interact(),
-                probe => probe.IsInteractable),
-            new ViewProbe<SeatController>(
-                _playerBody.HeadTransform,
-                2f, probe => probe.Take(_userController),
-                probe => probe.IsInteractable(_userController)),
-        };
-
+        _viewProbeHolders = new List<ViewProbeHolder>(viewProbeHolders);
         MouseController.SetVisibility(false);
-        _userController.SetMoveAbility(true);
     }
 
-    private void Update()
+    public void Update()
     {
-        CheckViewProbes();
-        CheckPauseSwitch();
-        UpdateInput();
-
-        _userController.CarControl(this);
-        _userController.PlayerControl(this);
+        HandleViewProbes();
+        HandlePauseSwitch();
+        HandleInput();
     }
 
-    private void UpdateInput()
+    private void HandleInput()
     {
         if (Input.GetKey(_gasKey))
         {
@@ -158,31 +143,28 @@ public class ClientIO : MonoBehaviour,
         Leave = Input.GetKeyDown(_leaveKey);
     }
 
-    private void CheckViewProbes()
+    private void HandleViewProbes()
     {
-        _cursor.SetActive(false);
+        IsFocused = false;
 
         foreach (var holder in _viewProbeHolders)
         {
-            var mode = Input.GetKeyDown(KeyCode.E) ?
+            var mode = Input.GetKeyDown(_interactKey) ?
                 ViewProbeHolder.QueryMode.INTERACT :
                 ViewProbeHolder.QueryMode.CHECK;
 
             if (holder.CheckCondition(mode))
             {
-                _cursor.SetActive(true);
+                IsFocused = true;
             }
         }
     }
 
-    private void CheckPauseSwitch()
+    private void HandlePauseSwitch()
     {
         if (Input.GetKeyDown(_pauseKey))
         {
-            _isPause = !_isPause;
-
-            MouseController.SetVisibility(_isPause);
-            _userController.SetMoveAbility(!_isPause);
+            IsPause = !IsPause;
         }
     }
 }

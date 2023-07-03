@@ -2,70 +2,82 @@ namespace Core.Car
 {
     public class CarController
     {
-        private readonly Car _car;
+        private readonly IControls _controls;
+
+        private Car _car;
 
         public bool IsAvailable { get; set; }
+
         public Car Car => _car;
 
-        public CarController(Car car)
+        public CarController(IControls _controls)
+        {
+            this._controls = _controls;
+
+            IsAvailable = true;
+        }
+
+        public void SetCar(Car car)
         {
             this._car = car;
         }
 
-        public void Update(IControls controls)
+        public void Update()
         {
             if (!IsAvailable) return;
 
-            _car.GasPedal.Value = controls.Gas;
-            _car.BreakPedal.Value = controls.Break;
-            _car.SteeringWheel.Steer(controls.SteerDelta);
+            if(_car == null) return;
 
-            if (controls.SetDrivingMode)
+            _car.GasPedal.Value = _controls.Gas;
+            _car.BreakPedal.Value = _controls.Break;
+            _car.SteeringWheel.Steer(_controls.SteerDelta);
+
+            if (_controls.SetDrivingMode)
             {
                 _car.Transmission.SwitchMode(TransmissionMode.DRIVING);
             }
 
-            if (controls.SetParkingMode)
+            if (_controls.SetParkingMode)
             {
                 _car.Transmission.SwitchMode(TransmissionMode.PARKING);
             }
 
-            if (controls.SetReverseMode)
+            if (_controls.SetReverseMode)
             {
                 _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
             }
 
-            if (controls.SetNeutralMode)
+            if (_controls.SetNeutralMode)
             {
                 _car.Transmission.SwitchMode(TransmissionMode.NEUTRAL);
             }
 
-            if (controls.ParkingBreakSwitch)
+            if (_controls.ParkingBreakSwitch)
             {
                 _car.ParkingBreak.Switch();
             }
 
-            if (controls.LeftTurnSwitch)
+            if (_controls.LeftTurnSwitch)
             {
                 _car.TurnLights.SwitchLeft();
             }
 
-            if (controls.RightTurnSwitch)
+            if (_controls.RightTurnSwitch)
             {
                 _car.TurnLights.SwitchRight();
             }
 
-            if (controls.EmergencySwitch)
+            if (_controls.EmergencySwitch)
             {
                 _car.TurnLights.SwitchEmergency();
             }
 
-            if (controls.HeadLightSwitch)
+            if (_controls.HeadLightSwitch)
             {
                 _car.HeadLights.Switch();
             }
 
-            if (controls.EngineSwitch)
+            if (_controls.EngineSwitch)
             {
                 _car.Engine.Starter.SwitchState();
             }

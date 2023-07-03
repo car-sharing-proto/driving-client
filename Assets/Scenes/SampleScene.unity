@@ -739,7 +739,7 @@ MonoBehaviour:
   _sensitivity: 10
   _maxFocalLength: 60
   _minFocalLength: 15
---- !u!1 &1007379067
+--- !u!1 &981304830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -747,68 +747,155 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1007379069}
-  - component: {fileID: 1007379068}
+  - component: {fileID: 981304832}
+  - component: {fileID: 981304831}
   m_Layer: 0
-  m_Name: Level
+  m_Name: BOOTSTRAP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1007379068
+--- !u!114 &981304831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007379067}
+  m_GameObject: {fileID: 981304830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff67c871c162c34599758698a56110b, type: 3}
+  m_Script: {fileID: 11500000, guid: fd9d2633ee67cc049ad4c730fa2c0060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cursor: {fileID: 730216678}
   _playerBody: {fileID: 672895532}
-  _forwardKey: 119
-  _backKey: 115
-  _rightKey: 100
-  _leftKey: 97
-  _jumpKey: 32
-  _runKey: 306
-  _leaveKey: 304
-  _mouseSensitivity: 2
-  _gasKey: 119
-  _breakKey: 113
-  _setDrivingModeKey: 111
-  _setParkingModeKey: 112
-  _setReverseModeKey: 117
-  _setNeutralModeKey: 105
-  _steerRightKey: 100
-  _steerLeftKey: 97
-  _engineSwitchKey: 116
-  _parkingBreakKey: 114
-  _addPowerKey: 306
-  _leftTurnKey: 44
-  _rightTurnKey: 46
-  _emergencyKey: 102
-  _headLightKey: 9
-  _pauseKey: 27
---- !u!4 &1007379069
+  _clientUI: {fileID: 2005097618}
+  _clientIO:
+    _forwardKey: 119
+    _backKey: 115
+    _rightKey: 100
+    _leftKey: 97
+    _jumpKey: 32
+    _runKey: 306
+    _leaveKey: 304
+    _mouseSensitivity: 2
+    _gasKey: 119
+    _breakKey: 113
+    _setDrivingModeKey: 111
+    _setParkingModeKey: 112
+    _setReverseModeKey: 117
+    _setNeutralModeKey: 105
+    _steerRightKey: 100
+    _steerLeftKey: 97
+    _engineSwitchKey: 116
+    _parkingBreakKey: 114
+    _addPowerKey: 306
+    _leftTurnKey: 44
+    _rightTurnKey: 46
+    _emergencyKey: 102
+    _headLightKey: 9
+    _pauseKey: 27
+    _interactKey: 101
+--- !u!4 &981304832
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007379067}
+  m_GameObject: {fileID: 981304830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35198927, y: 2.454242, z: -14.555177}
+  m_LocalPosition: {x: -6.6861987, y: 1.1076993, z: 8.979663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1452183012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 136049332, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 136049332, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 992624350, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 992624350, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977045927, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977045927, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384971, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Name
+      value: kia rio x unity edit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.5548615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128743717659879, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.419
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
 --- !u!1 &1789380079
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +1006,7 @@ GameObject:
   - component: {fileID: 2005097616}
   - component: {fileID: 2005097615}
   - component: {fileID: 2005097614}
+  - component: {fileID: 2005097618}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1008,6 +1096,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2005097618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005097613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a39a28caa62b6499a3744502bdd328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cursor: {fileID: 730216678}
 --- !u!1 &2060290788
 GameObject:
   m_ObjectHideFlags: 0

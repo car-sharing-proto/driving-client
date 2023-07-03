@@ -7,7 +7,7 @@ public class SeatController : MonoBehaviour
     [SerializeField] private Core.Car.Door _door;
     private Core.Player.SeatPlace _playerSeat;
     private Core.Car.Seat _carSeat;
-    private User _characterController;
+    private UserController _userControler;
 
     private void Awake()
     {
@@ -21,31 +21,26 @@ public class SeatController : MonoBehaviour
         _playerSeat.IsLocked = 
             _door.State != Core.Car.IOpenable.OpenState.OPEN;
 
-        if (_characterController != null &&
-            _carSeat.IsDriverSeat && !_playerSeat.IsTaken)
+        if (_userControler is not null && !_playerSeat.IsTaken)
         {
-            _characterController.CarController = null;
-            _characterController = null;
+            _userControler.CarController.SetCar(null);
+
+            _userControler = null;
         }
     }
 
-    public bool IsInteractable(User user)
+    public bool IsInteractable(UserController user)
     {
         return _playerSeat.IsInteractable(user.PlayerController.PlayerBody);
     }
 
-    public void Take(User user)
+    public void Take(UserController user)
     {
         if (_playerSeat.Take(user.PlayerController.PlayerBody))
         {
-            _characterController = user;
+            _userControler = user;
 
-            if (_carSeat.IsDriverSeat)
-            {
-                // TODO: Remove this cringe.
-                _characterController.CarController =
-                    _carSeat.CarController;
-            }
+            _userControler.CarController.SetCar(_carSeat.ProvideControllableCar());
         }
     }
 }
