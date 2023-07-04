@@ -20,23 +20,22 @@ public class Bootstrap : MonoBehaviour
         var playerController = new PlayerController(_clientIO);
 
         // Client IO data.
+        var rayCaster = new Raycaster(_playerBody.HeadTransform, 3f);
         var viewProbes = new ViewProbeHolder[]
         {
             // Check for interaction with some functional.
-            new ViewProbe<IFunctional>(
-                _playerBody.HeadTransform,
-                3f, probe => probe.Interact(),
+            new ViewProbe<IFunctional>(rayCaster,
+                probe => probe.Interact(),
                 probe => probe.IsInteractable),
 
             // Check for ability to sit in a seat.
-            new ViewProbe<SeatController>(
-                _playerBody.HeadTransform,
-                2f, probe => probe.Take(_userController),
+            new ViewProbe<SeatController>(rayCaster,
+                probe => probe.Take(_userController),
                 probe => probe.IsInteractable(_userController))
         };
 
         // Game state set up.
-        _gameState = new GameState();  
+        _gameState = new GameState();
 
         // User controller set up.
         _userController = new UserController(carController, playerController);

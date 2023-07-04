@@ -1049,6 +1049,91 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+--- !u!1001 &1536951732
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 136049332, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 136049332, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 992624350, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 992624350, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977045927, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _color.g
+      value: 0.049354553
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977045927, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: _maxLight
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392951274247384971, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_Name
+      value: kia rio x unity edit (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.5548615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999128743717659879, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.419
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
 --- !u!1 &1789380079
 GameObject:
   m_ObjectHideFlags: 0

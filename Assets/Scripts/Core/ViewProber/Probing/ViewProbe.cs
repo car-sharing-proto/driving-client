@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Core.ViewProber
 {
     public class ViewProbe<T> : ViewProbeHolder where T : class
@@ -11,12 +9,12 @@ namespace Core.ViewProber
         private readonly Action _action;
         private readonly Raycaster _raycaster;
 
-        public ViewProbe(Transform view, float rayLength, 
+        public ViewProbe(Raycaster raycaster,
             Action action, Condition condition = null)
         {
             this._condition = condition;
             this._action = action;
-            this._raycaster = new Raycaster(view, rayLength);
+            this._raycaster = raycaster;
         }
 
         public override bool CheckCondition(QueryMode mode)
