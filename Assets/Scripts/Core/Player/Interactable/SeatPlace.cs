@@ -7,31 +7,31 @@ namespace Core.Player
         [SerializeField] private Transform _placePoint;
         [SerializeField] private Transform _leavePoint;
 
-        private ISitable _sitable = null;
+        private ISitting _sitting = null;
 
-        public bool IsTaken => _sitable != null;
+        public bool IsTaken => _sitting != null;
         public bool IsLocked { get; set; } = false;
-        public ISitable Sitable => _sitable;
+        public ISitting Sitting => _sitting;
 
         private void Update()
         {
             CheckLeaving();
         }
 
-        public bool IsInteractable(ISitable sitable)
+        public bool IsInteractable(ISitting sitable)
         {
             return !IsLocked && !IsTaken && !sitable.IsSitting;
         }
 
-        public bool Take(ISitable sitable)
+        public bool Take(ISitting sitable)
         {
             if (!IsInteractable(sitable))
             {
                 return false;
             }
 
-            _sitable = sitable;
-            _sitable.SitDown(_placePoint);
+            _sitting = sitable;
+            _sitting.SitDown(_placePoint);
 
             return true;
         }
@@ -40,17 +40,17 @@ namespace Core.Player
         {
             if (IsLocked)
             {
-                _sitable.SitDown(_placePoint);
+                _sitting.SitDown(_placePoint);
                 return;
             }
 
-            _sitable.StandUp(_leavePoint);
-            _sitable = null;
+            _sitting.StandUp(_leavePoint);
+            _sitting = null;
         }
 
         private void CheckLeaving()
         {
-            if (_sitable == null || _sitable.IsSitting)
+            if (_sitting == null || _sitting.IsSitting)
             {
                 return;
             }

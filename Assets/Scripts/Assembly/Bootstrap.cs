@@ -23,15 +23,18 @@ public class Bootstrap : MonoBehaviour
         var rayCaster = new Raycaster(_playerBody.HeadTransform, 3f);
         var viewProbes = new ViewProbeHolder[]
         {
-            // Check for interaction with some functional.
-            new ViewProbe<IFunctional>(rayCaster,
-                probe => probe.Interact(),
-                probe => probe.IsInteractable),
+            //// Check for interaction with some functional.
+            //new ViewProbe<Core.Car.IInteractive>(rayCaster,
+            //    probe => probe.Interact(),
+            //    probe => probe.IsInteractable),
 
-            // Check for ability to sit in a seat.
-            new ViewProbe<SeatController>(rayCaster,
-                probe => probe.Take(_userController),
-                probe => probe.IsInteractable(_userController))
+            //// Check for ability to sit in a seat.
+            //new ViewProbe<SeatController>(rayCaster,
+            //    probe => probe.Take(_userController),
+            //    probe => probe.IsInteractable(_userController))
+            new ViewProbe<IInteractive>(rayCaster,
+                  probe => probe.Interact(_userController),
+                  probe => probe.IsInteractable(_userController))
         };
 
         // Game state set up.

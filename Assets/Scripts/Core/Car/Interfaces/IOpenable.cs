@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public interface IOpenable
+    public interface IOpenable : IInteractive
     {
         public enum OpenState
         {

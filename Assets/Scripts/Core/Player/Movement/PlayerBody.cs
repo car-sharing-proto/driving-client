@@ -3,7 +3,7 @@
 namespace Core.Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerBody : MonoBehaviour, ISitable
+    public class PlayerBody : MonoBehaviour, ISitting
     {
         [SerializeField] private Transform _headTransform;
         [SerializeField] private float _climb = 2f;

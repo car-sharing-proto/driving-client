@@ -19,7 +19,17 @@ namespace Core.Car
 
         public void SetCar(Car car)
         {
+            if(car == null)
+            {
+                throw new System.NullReferenceException();
+            }
+
             this._car = car;
+        }
+
+        public void RemoveCar()
+        {
+            this._car = null;
         }
 
         public void Update()
