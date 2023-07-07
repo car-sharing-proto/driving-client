@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.ViewProber
+namespace Core.Raycasting
 {
     public class Raycaster
     {

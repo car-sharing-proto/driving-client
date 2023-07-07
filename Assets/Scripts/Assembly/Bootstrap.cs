@@ -1,62 +1,62 @@
 using Core.Car;
 using Core.GameManagment;
 using Core.Player;
-using Core.ViewProber;
+using Core.Raycasting;
 using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
+    // Configuration constants.
+    private const float c_rayLength = 3.0f;
+
+    // Serializable members.
     [SerializeField] private PlayerBody _playerBody;
     [SerializeField] private ClientUI _clientUI;
     [SerializeField] private ClientIO _clientIO;
-    [SerializeField] private GameState _gameState;
 
+    // Non-serialized members.
+    private GameState _gameState;
     private UserController _userController;
+    private InteractiveRaycast _interactiveRaycast;
 
+    /// <summary>
+    /// Creating and injecting main dependencies.
+    /// </summary>
     private void Awake()
     {
         // User Controller data.
         var carController = new CarController(_clientIO);
         var playerController = new PlayerController(_clientIO);
+        playerController.SetPlayerBody(_playerBody);
 
         // Client IO data.
-        var rayCaster = new Raycaster(_playerBody.HeadTransform, 3f);
-        var viewProbes = new ViewProbeHolder[]
-        {
-            //// Check for interaction with some functional.
-            //new ViewProbe<Core.Car.IInteractive>(rayCaster,
-            //    probe => probe.Interact(),
-            //    probe => probe.IsInteractable),
-
-            //// Check for ability to sit in a seat.
-            //new ViewProbe<SeatController>(rayCaster,
-            //    probe => probe.Take(_userController),
-            //    probe => probe.IsInteractable(_userController))
-            new ViewProbe<IInteractive>(rayCaster,
-                  probe => probe.Interact(_userController),
-                  probe => probe.IsInteractable(_userController))
-        };
+        var rayCaster = new Raycaster(
+            _playerBody.HeadTransform, c_rayLength);
 
         // Game state set up.
         _gameState = new GameState();
 
         // User controller set up.
-        _userController = new UserController(carController, playerController);
-        _userController.PlayerController.SetPlayerBody(_playerBody);
+        _userController = new UserController( 
+            _gameState, carController, playerController);
         _userController.SetMoveAbility(true);
 
+        // Interactive raycasting set up.
+        _interactiveRaycast = 
+            new InteractiveRaycast(rayCaster, _userController);
+
         // Client IO set up.
-        _clientIO.Initialize(_gameState, viewProbes);
-        _clientUI.Initialize(_gameState, _clientIO);
+        _clientIO.Initialize(_gameState, _interactiveRaycast);
+        _clientUI.Initialize(_gameState, _interactiveRaycast);
     }
 
+    /// <summary>
+    /// Updating states. 
+    /// </summary>
     private void Update()
     {
-        // Update statements.
+        _interactiveRaycast.Update();
         _clientIO.Update();
         _userController.Update();
-
-        // Update dependencies.
-        _userController.SetMoveAbility(_gameState.IsUnpause);
     }
 }

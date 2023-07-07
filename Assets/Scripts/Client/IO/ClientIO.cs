@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Core.ViewProber;
 using Core.GameManagment;
+using System;
+using UnityEngine;
 
 [Serializable]
 public class ClientIO :
@@ -43,11 +41,8 @@ public class ClientIO :
     private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f);
 
-    private List<ViewProbeHolder> _viewProbeHolders;
     private GameState _gameState;
-
-    // UI controls.
-    public bool IsFocused { get; private set; }
+    private InteractiveRaycast _interactiveRaycast;
 
     // Car controls.
     public float Gas { get; private set; }
@@ -75,18 +70,19 @@ public class ClientIO :
     public bool IsJumping { get; private set; }
     public bool Leave { get; private set; }
 
-    public void Initialize(GameState gameState, ViewProbeHolder[] viewProbeHolders)
+    public void Initialize(GameState gameState, 
+        InteractiveRaycast interactiveRaycast)
     {
         this._gameState = gameState;
-        this._viewProbeHolders = new List<ViewProbeHolder>(viewProbeHolders);
+        this._interactiveRaycast = interactiveRaycast;
 
         MouseController.SetVisibility(false);
     }
 
     public void Update()
     {
-        HandleViewProbes();
         HandlePauseSwitch();
+        HandleInteract();
         HandleInput();
     }
 
@@ -144,23 +140,6 @@ public class ClientIO :
         Leave = Input.GetKeyDown(_leaveKey);
     }
 
-    private void HandleViewProbes()
-    {
-        IsFocused = false;
-
-        foreach (var holder in _viewProbeHolders)
-        {
-            var mode = Input.GetKeyDown(_interactKey) ?
-                ViewProbeHolder.QueryMode.INTERACT :
-                ViewProbeHolder.QueryMode.CHECK;
-
-            if (holder.CheckCondition(mode))
-            {
-                IsFocused = true;
-            }
-        }
-    }
-
     private void HandlePauseSwitch()
     {
         if (Input.GetKeyDown(_pauseKey))
@@ -168,4 +147,12 @@ public class ClientIO :
             _gameState.SwitchPauseState();
         }
     }
+    private void HandleInteract()
+    {
+        if (Input.GetKeyDown(_interactKey))
+        {
+            _interactiveRaycast.TryInteract();
+        }
+    }
+
 }
