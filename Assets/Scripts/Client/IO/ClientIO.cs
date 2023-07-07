@@ -82,11 +82,26 @@ public class ClientIO :
     public void Update()
     {
         HandlePauseSwitch();
+        HandlePlayerInput();
+        HandleCarInput();
         HandleInteract();
-        HandleInput();
     }
 
-    private void HandleInput()
+    private void HandlePlayerInput()
+    {
+        RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+        RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+
+        MoveForward = Input.GetKey(_forwardKey);
+        MoveBack = Input.GetKey(_backKey);
+        MoveRight = Input.GetKey(_rightKey);
+        MoveLeft = Input.GetKey(_leftKey);
+        IsRunning = Input.GetKey(_runKey);
+        IsJumping = Input.GetKey(_jumpKey);
+        Leave = Input.GetKeyDown(_leaveKey);
+    }
+
+    private void HandleCarInput()
     {
         if (Input.GetKey(_gasKey))
         {
@@ -127,17 +142,8 @@ public class ClientIO :
         RightTurnSwitch = Input.GetKeyDown(_rightTurnKey);
         EmergencySwitch = Input.GetKeyDown(_emergencyKey);
         HeadLightSwitch = Input.GetKeyDown(_headLightKey);
-        RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-        RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
         EngineSwitch = Input.GetKeyDown(_engineSwitchKey);
         ParkingBreakSwitch = Input.GetKeyDown(_parkingBreakKey);
-        MoveForward = Input.GetKey(_forwardKey);
-        MoveBack = Input.GetKey(_backKey);
-        MoveRight = Input.GetKey(_rightKey);
-        MoveLeft = Input.GetKey(_leftKey);
-        IsRunning = Input.GetKey(_runKey);
-        IsJumping = Input.GetKey(_jumpKey);
-        Leave = Input.GetKeyDown(_leaveKey);
     }
 
     private void HandlePauseSwitch()

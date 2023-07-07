@@ -15,7 +15,8 @@ namespace Core.Raycasting
 
         public T CheckHit<T>() where T : class
         {
-            if (Physics.Raycast(_target.position, _target.forward, out RaycastHit hit, _rayLength))
+            if (Physics.Raycast(_target.position,
+                _target.forward, out RaycastHit hit, _rayLength))
             {
                 var tempMonoArray = hit.collider.gameObject.GetComponents<MonoBehaviour>();
 

@@ -34,7 +34,6 @@ namespace Core.Player
         {
             if (IsSitting)
             {
-                
                 ClearEnergy();
                 return;
             }
@@ -43,14 +42,17 @@ namespace Core.Player
             var decreasing = isGrounded ?
                 EnvironmentResistance.Ground :
                 EnvironmentResistance.Air;
-            var maxVelocity = _speed * (IsRunning ? _runMultiplier : 1.1f);
+            var maxVelocity = _speed *
+                (IsRunning ? _runMultiplier : 1.0f);  
 
-            _planarVelocity *= Mathf.Pow(_damping * decreasing, Time.deltaTime);
+            _planarVelocity *= Mathf.Pow(
+                _damping * decreasing, Time.deltaTime);
             _planarVelocity += _acceleration * Time.deltaTime;
 
             if (_planarVelocity.magnitude > maxVelocity)
             {
-                _planarVelocity = _planarVelocity.normalized * maxVelocity;
+                _planarVelocity = 
+                    _planarVelocity.normalized * maxVelocity;
             }
 
             if (isGrounded)
@@ -63,8 +65,8 @@ namespace Core.Player
                     Time.deltaTime * Physics.gravity.y;
             }
 
-            _characterController.Move(_planarVelocity 
-                + _verticalVelocity * Vector3.up);
+            _characterController.Move(Time.deltaTime * _planarVelocity 
+                + Time.deltaTime * _verticalVelocity * Vector3.up);
         }
 
         public void Move(Movement horizontal, Movement vertical)
