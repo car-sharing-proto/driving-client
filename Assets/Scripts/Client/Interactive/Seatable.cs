@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Core.Player.SeatPlace))]
@@ -11,23 +12,39 @@ public class Seatable : MonoBehaviour, IInteractive
     private Core.Car.Seat _carSeat;
     private UserController _userControler;
 
+    public Action<UserController> OnUserSitting;
+    public Action<UserController> OnUserLeaving;
+
     public string Hint => _hintText;
 
     private void Awake()
     {
         _playerSeat = GetComponent<Core.Player.SeatPlace>();
         _carSeat = GetComponent<Core.Car.Seat>();
+
+        _playerSeat.OnSitting += Refresh;
+        _playerSeat.OnLeaving += Refresh;
+    }
+
+    private void OnDestroy()
+    {
+        _playerSeat.OnSitting -= Refresh;
+        _playerSeat.OnLeaving -= Refresh;
     }
 
     private void Update()
     {
+        _playerSeat.IsLocked = _door.State
+            == Core.Car.IOpenable.OpenState.CLOSED;
+    }
+
+    private void Refresh()
+    {
         _carSeat.IsTaken = _playerSeat.IsTaken;
-        _playerSeat.IsLocked =
-            _door.State != Core.Car.IOpenable.OpenState.OPEN;
 
         if (_userControler is not null && !_playerSeat.IsTaken)
         {
-            _userControler.CarController.SetCar(null);
+            OnUserLeaving?.Invoke(_userControler);
 
             _userControler = null;
         }
@@ -46,8 +63,7 @@ public class Seatable : MonoBehaviour, IInteractive
         {
             _userControler = userController;
 
-            _userControler.CarController.SetCar(
-                _carSeat.ProvideControllableCar());
+            OnUserSitting?.Invoke(_userControler);
         }
     }
 }

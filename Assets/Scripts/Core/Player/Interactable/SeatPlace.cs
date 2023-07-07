@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Player
@@ -13,25 +14,30 @@ namespace Core.Player
         public bool IsLocked { get; set; } = false;
         public ISitting Sitting => _sitting;
 
+        public Action OnSitting { get; set; }
+        public Action OnLeaving { get; set; }
+
         private void Update()
         {
             CheckLeaving();
         }
 
-        public bool IsInteractable(ISitting sitable)
+        public bool IsInteractable(ISitting sitting)
         {
-            return !IsLocked && !IsTaken && !sitable.IsSitting;
+            return !IsLocked && !IsTaken && !sitting.IsSitting;
         }
 
-        public bool Take(ISitting sitable)
+        public bool Take(ISitting sitting)
         {
-            if (!IsInteractable(sitable))
+            if (!IsInteractable(sitting))
             {
                 return false;
             }
 
-            _sitting = sitable;
+            _sitting = sitting;
             _sitting.SitDown(_placePoint);
+
+            OnSitting?.Invoke();
 
             return true;
         }
@@ -46,6 +52,8 @@ namespace Core.Player
 
             _sitting.StandUp(_leavePoint);
             _sitting = null;
+
+            OnLeaving?.Invoke();
         }
 
         private void CheckLeaving()
