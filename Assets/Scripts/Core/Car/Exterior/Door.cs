@@ -5,7 +5,7 @@ using OpenState = Core.Car.IOpenable.OpenState;
 namespace Core.Car
 {
     [RequireComponent(typeof(MeshCollider))]
-    public class Door : MonoBehaviour, IOpenable, IInteractive
+    public class Door : MonoBehaviour, IOpenable
     {
         [SerializeField] private Vector3 _startAngle;
         [SerializeField] private Vector3 _endAngle;

@@ -14,6 +14,7 @@ namespace Core.Car
         [SerializeField] private Wheel _rearLeftWheel;
         [SerializeField] private float _breakForce;
         [SerializeField] private float _maxSpeed;
+
         [Header("Controls")]
         [SerializeField] private SteeringWheel _steeringWheel;
         [SerializeField] private Tachometer _tachometer;
@@ -21,11 +22,13 @@ namespace Core.Car
         [SerializeField] private ParkingBreak _parkingBreak;
         [SerializeField] private Pedal _gasPedal;
         [SerializeField] private Pedal _breakPedal;
+
         [Header("Lighting")]
         [SerializeField] private TurnLights _turnLights;
         [SerializeField] private HeadLights _headLights;
         [SerializeField] private LightGroup _stopLights;
         [SerializeField] private LightGroup _backLights;
+
         [Header("Engine")]
         [SerializeField] private Engine _engine;
         [SerializeField] private Transmission _transmission;
@@ -45,6 +48,7 @@ namespace Core.Car
         {
             _engine.Initialize();
             _transmission.Initialize();
+
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
         }

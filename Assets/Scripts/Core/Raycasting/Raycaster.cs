@@ -18,7 +18,8 @@ namespace Core.Raycasting
             if (Physics.Raycast(_target.position,
                 _target.forward, out RaycastHit hit, _rayLength))
             {
-                var tempMonoArray = hit.collider.gameObject.GetComponents<MonoBehaviour>();
+                var tempMonoArray = hit.collider.
+                    gameObject.GetComponents<MonoBehaviour>();
 
                 foreach (var monoBehaviour in tempMonoArray)
                 {

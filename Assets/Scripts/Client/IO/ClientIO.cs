@@ -160,5 +160,4 @@ public class ClientIO :
             _interactiveRaycast.TryInteract();
         }
     }
-
 }
