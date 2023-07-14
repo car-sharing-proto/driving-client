@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -37,6 +38,7 @@ namespace Core.Car
             _collider.brakeTorque = force;
         }
 
+        [Obsolete]
         public float GetTorqueEfficiency()
         {
             var realSpeed = _collider.attachedRigidbody.velocity.magnitude;

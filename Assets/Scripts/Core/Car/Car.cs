@@ -89,6 +89,7 @@ namespace Core.Car
             return (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
         }
 
+        [System.Obsolete]
         private float GetTorqueEfficiency()
         {
             return (_frontLeftWheel.GetTorqueEfficiency() +
@@ -104,14 +105,13 @@ namespace Core.Car
         private void HandleEngine()
         {
             var resistance = GetResistanceForce();
-            var torqueEfficiency = GetTorqueEfficiency();
             var wheelsRPM = GetWheelsRPM();
 
             _transmission.Lock = !_engine.Enabled;
             _frontLeftWheel.TransmitTorque(
-                _transmission.Torque * torqueEfficiency - resistance);
+                _transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(
-                _transmission.Torque * torqueEfficiency - resistance);
+                _transmission.Torque - resistance);
 
             _engine.Update(_gasPedal.Value,
                 _transmission.RPM,

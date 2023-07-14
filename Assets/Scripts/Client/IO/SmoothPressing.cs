@@ -20,6 +20,7 @@ public class SmoothPressing
     public void Press()
     {
         var press = FullPush ? 1 : _middleValue;
+
         if (Value < press)
         {
             Value += _pressSpeed * Time.deltaTime;
