@@ -89,13 +89,6 @@ namespace Core.Car
             return (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
         }
 
-        [System.Obsolete]
-        private float GetTorqueEfficiency()
-        {
-            return (_frontLeftWheel.GetTorqueEfficiency() +
-                _frontRightWheel.GetTorqueEfficiency()) * 0.5f;
-        }
-
         private void HandleSteering()
         {
             _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;

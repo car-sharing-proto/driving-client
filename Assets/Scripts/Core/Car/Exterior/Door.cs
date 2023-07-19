@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using OpenState = Core.Car.IOpenable.OpenState;
@@ -22,6 +23,8 @@ namespace Core.Car
 
         public bool IsInteractable => State is OpenState.OPEN or OpenState.CLOSED;
 
+        public Action<OpenState> OnStateChange;
+
         private void Awake()
         {
             State = OpenState.CLOSED;
@@ -30,10 +33,10 @@ namespace Core.Car
 
             _openAnimation = new(StartAngle, EndAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => State = OpenState.OPEN);
+                () => SetState(OpenState.OPEN));
             _closeAnimation = new(EndAngle, StartAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => State = OpenState.CLOSED);
+                () => SetState(OpenState.CLOSED));
         }
 
         private void Update()
@@ -45,14 +48,14 @@ namespace Core.Car
         {
             StartCoroutine(_openAnimation.GetAnimationCoroutine());
 
-            State = OpenState.IS_OPENING;
+            SetState(OpenState.IS_OPENING);
         }
 
         public void Close()
         {
             StartCoroutine(_closeAnimation.GetAnimationCoroutine());
 
-            State = OpenState.IS_CLOSING;
+            SetState(OpenState.IS_CLOSING);
         }
 
         public void Interact()
@@ -68,6 +71,18 @@ namespace Core.Car
                 default:
                     break;
             }
+        }
+
+        private void SetState(OpenState state)
+        {
+            if(State == state)
+            {
+                return;
+            }
+
+            State = state;
+
+            OnStateChange?.Invoke(State);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -36,19 +35,6 @@ namespace Core.Car
         public void Break(float force)
         {
             _collider.brakeTorque = force;
-        }
-
-        [Obsolete]
-        public float GetTorqueEfficiency()
-        {
-            var realSpeed = _collider.attachedRigidbody.velocity.magnitude;
-            var wheelSpeed = GetWheelSpeed();
-            var multiplier = wheelSpeed <= c_minTorqueMultiplier ?
-                c_minTorqueMultiplier :
-                (realSpeed / wheelSpeed * (1.0f - c_minTorqueMultiplier)
-                + c_minTorqueMultiplier);
-
-            return multiplier;
         }
 
         private float GetWheelSpeed()

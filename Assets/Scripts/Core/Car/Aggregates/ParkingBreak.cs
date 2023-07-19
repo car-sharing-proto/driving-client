@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core.Animation;
+using System;
 
 namespace Core.Car
 {
@@ -7,7 +8,8 @@ namespace Core.Car
     {
         RAISED,
         LOWERED,
-        SWITCHING
+        SWITCHING_UP,
+        SWITCHING_DOWN
     }
 
     public class ParkingBreak : MonoBehaviour
@@ -24,16 +26,18 @@ namespace Core.Car
         public Vector3 EndAngle => _endAngle;
         public ParkingBreakState State { get; private set; }
 
+        public Action<ParkingBreakState> OnBreakSwitch;
+
         private void Awake()
         {
             State = ParkingBreakState.RAISED;
 
             _lowerAnimation = new(StartAngle, EndAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => State = ParkingBreakState.LOWERED);
+                () => SetState(ParkingBreakState.LOWERED));
             _raiseAnimation = new(EndAngle, StartAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => State = ParkingBreakState.RAISED);
+                () => SetState(ParkingBreakState.RAISED));
         }
 
         private void Update()
@@ -56,26 +60,38 @@ namespace Core.Car
             }
         }
 
-        private void Lower()
+        private void SetState(ParkingBreakState state)
         {
-            if (State == ParkingBreakState.SWITCHING)
+            if(State == state)
             {
                 return;
             }
 
-            State = ParkingBreakState.SWITCHING;
+            State = state;
+
+            OnBreakSwitch?.Invoke(State);
+        }
+
+        private void Lower()
+        {
+            if (State != ParkingBreakState.RAISED)
+            {
+                return;
+            }
+
+            SetState(ParkingBreakState.SWITCHING_DOWN);
 
             StartCoroutine(_lowerAnimation.GetAnimationCoroutine());
         }
 
         private void Raise()
         {
-            if (State == ParkingBreakState.SWITCHING)
+            if (State != ParkingBreakState.LOWERED)
             {
                 return;
             }
 
-            State = ParkingBreakState.SWITCHING;
+            SetState(ParkingBreakState.SWITCHING_UP);
 
             StartCoroutine(_raiseAnimation.GetAnimationCoroutine());
         }

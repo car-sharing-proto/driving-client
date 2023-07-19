@@ -28,7 +28,7 @@ namespace Core.Car
 
         private float GetStiffness()
         {
-            return (2 + 2 * Mathf.Abs(SteerAngle));
+            return 20; // (2 + 2 * Mathf.Abs(SteerAngle));
         }
     }
 }

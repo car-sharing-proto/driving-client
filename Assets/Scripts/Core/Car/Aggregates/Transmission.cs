@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -28,6 +29,8 @@ namespace Core.Car
         private float _fluidTransition = 0;
         private float _speed = 0;
         private int _currentGear = 0;
+
+        public Action<TransmissionMode> OnModeChange;
 
         public bool Lock { get; set; }
         public TransmissionMode Mode { get; private set; }
@@ -63,9 +66,16 @@ namespace Core.Car
                 return;
             }
 
+            if(mode == Mode)
+            {
+                return;
+            }
+
             if (Mathf.Abs(_speed) <= c_speedEps)
             {
                 Mode = mode;
+
+                OnModeChange?.Invoke(Mode);
             }
         }
 

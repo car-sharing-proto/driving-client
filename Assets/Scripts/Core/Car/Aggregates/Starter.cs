@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -26,6 +27,8 @@ namespace Core.Car
             _runningTransition > 0.0f &&
             _runningTransition < 1.0f;
 
+        public Action<EngineState> OnChangeState;
+
         public void SetState(EngineState state)
         {
             if (_runningTransition > 0.0f &&
@@ -35,6 +38,8 @@ namespace Core.Car
             }
 
             State = state;
+
+            OnChangeState?.Invoke(State);
         }
 
         public void SwitchState()

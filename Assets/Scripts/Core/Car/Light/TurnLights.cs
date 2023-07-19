@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Car
@@ -18,13 +19,24 @@ namespace Core.Car
         [SerializeField] private LightGroup _rightLights;
 
         private readonly float _turnLightsSpeed = 2.3f;
-        private float _turnLightsphasa = 0;
+        private float _turnLightsPhasa = 0;
+        private bool _blinkState = false;
 
         public State LightState { get; private set; }
 
+        public Action<bool> OnBlinkerSwitch;
+
         public void Update()
         {
-            _turnLightsphasa += _turnLightsSpeed * Time.deltaTime;
+            if(LightState == State.NONE) 
+            {
+                ClearPhasa();
+            }
+            else
+            {
+                UpdatePhasa();
+                SetBlinkState((int)_turnLightsPhasa % 2 == 0);
+            }
 
             ControlFlashing(_rightLights, State.RIGHT);
             ControlFlashing(_leftLights, State.LEFT);
@@ -70,7 +82,30 @@ namespace Core.Car
 
         private void Flashing(LightGroup lightGroup)
         {
-            lightGroup.SetLight((int)_turnLightsphasa % 2 == 0);
+            lightGroup.SetLight(_blinkState);
         }
+
+        private void UpdatePhasa()
+        {
+            _turnLightsPhasa += _turnLightsSpeed * Time.deltaTime;
+        }
+
+        private void ClearPhasa()
+        {
+            _turnLightsPhasa = 0;
+        }
+
+        private void SetBlinkState(bool state)
+        {
+            if(state == _blinkState)
+            {
+                return;
+            }
+            
+            _blinkState = state;
+
+            OnBlinkerSwitch?.Invoke(state);
+        }
+
     }
 }
