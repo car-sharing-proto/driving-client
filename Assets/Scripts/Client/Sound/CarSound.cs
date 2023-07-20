@@ -5,12 +5,11 @@ using System.Linq;
 public class CarSound : MonoBehaviour
 {
     [SerializeField] private EngineSound _engineSound;
+    [SerializeField] private BlinkerSound _blinkerSound;
 
     [SerializeField] private AudioSource _doorSystemAudioSource;
     [SerializeField] private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip _blinkerOn;
-    [SerializeField] private AudioClip _blinkerOff;
     [SerializeField] private AudioClip _parkingBreakOn;
     [SerializeField] private AudioClip _parkingBreakOff;
     [SerializeField] private AudioClip _openDoor;
@@ -29,14 +28,14 @@ public class CarSound : MonoBehaviour
 
     [SerializeField] private float _enginePitchMultiplier = 2.0f;
     [SerializeField] private float _engineVolumeMultiplier = 2.0f;
-    [SerializeField] private float _blinkerVolumeMultiplier = 2.0f;
+
 
 
     private void Awake()
     {
         _engineSound.Initialize(_car.Engine);
+        _blinkerSound.Initialize(_car.TurnLights);
 
-        _car.TurnLights.OnBlinkerSwitch += PlayBlinkerSound;
         _car.ParkingBreak.OnBreakSwitch += PlayParkingBreakSound;
         _car.Transmission.OnModeChange += PlayTransmissionModeSound;
         _hood.OnStateChange += PlayLidSound;
@@ -56,8 +55,8 @@ public class CarSound : MonoBehaviour
     private void OnDestroy()
     {
         _engineSound.Destroy();
+        _blinkerSound.Destroy();
 
-        _car.TurnLights.OnBlinkerSwitch -= PlayBlinkerSound;
         _car.ParkingBreak.OnBreakSwitch -= PlayParkingBreakSound;
         _car.Transmission.OnModeChange -= PlayTransmissionModeSound;
         _hood.OnStateChange -= PlayLidSound;
@@ -81,11 +80,7 @@ public class CarSound : MonoBehaviour
 
 
 
-    private void PlayBlinkerSound(bool state)
-    {
-        _audioSource.PlayOneShot(
-            state ? _blinkerOn : _blinkerOff, _blinkerVolumeMultiplier);
-    }
+
 
     private void PlayDoorSound(IOpenable.OpenState state)
     {
