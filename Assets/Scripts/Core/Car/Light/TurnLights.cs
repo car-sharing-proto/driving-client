@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    [System.Serializable]
+    [Serializable]
     public class TurnLights
     {
-        [System.Flags]
+        [Flags]
         public enum State
         {
             NONE = 0,
@@ -92,6 +92,7 @@ namespace Core.Car
 
         private void ClearPhasa()
         {
+            _blinkState = false;
             _turnLightsPhasa = 0;
         }
 
