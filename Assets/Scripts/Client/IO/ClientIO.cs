@@ -39,7 +39,7 @@ public class ClientIO :
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private KeyCode _switchViewKey = KeyCode.V;
 
-    private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f, 0.5f);
+    private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f, 0.6f);
 
     private GameState _gameState;
@@ -160,7 +160,7 @@ public class ClientIO :
     }
     private void HandleInteract()
     {
-        if (Input.GetKeyDown(_interactKey))
+        if (Input.GetKeyDown(_interactKey) || Input.GetMouseButtonDown(0))
         {
             _interactiveRaycast.TryInteract();
         }
