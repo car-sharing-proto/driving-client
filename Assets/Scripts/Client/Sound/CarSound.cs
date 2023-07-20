@@ -7,12 +7,12 @@ public class CarSound : MonoBehaviour
     [SerializeField] private EngineSound _engineSound;
     [SerializeField] private BlinkerSound _blinkerSound;
     [SerializeField] private TransmissionSound _transmissionSound;
+    [SerializeField] private ParkingBreakSound _parkingBreakSound;
 
     [SerializeField] private AudioSource _doorSystemAudioSource;
     [SerializeField] private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip _parkingBreakOn;
-    [SerializeField] private AudioClip _parkingBreakOff;
+
     [SerializeField] private AudioClip _openDoor;
     [SerializeField] private AudioClip _closeDoor;
     [SerializeField] private AudioClip _slamLid;
@@ -32,9 +32,9 @@ public class CarSound : MonoBehaviour
         _engineSound.Initialize(_car.Engine);
         _blinkerSound.Initialize(_car.TurnLights);
         _transmissionSound.Initialize(_car.Transmission);
+        _parkingBreakSound.Initialize(_car.ParkingBreak);
 
-        _car.ParkingBreak.OnBreakSwitch += PlayParkingBreakSound;
-       
+
         _hood.OnStateChange += PlayLidSound;
         _trunk.OnStateChange += PlayLidSound;
 
@@ -54,8 +54,8 @@ public class CarSound : MonoBehaviour
         _engineSound.Destroy();
         _blinkerSound.Destroy();
         _transmissionSound.Destroy();
+        _parkingBreakSound.Destroy();
 
-        _car.ParkingBreak.OnBreakSwitch -= PlayParkingBreakSound;
         _hood.OnStateChange -= PlayLidSound;
         _trunk.OnStateChange -= PlayLidSound;
 
@@ -74,9 +74,6 @@ public class CarSound : MonoBehaviour
     {
         _engineSound.Update();
     }
-
-
-
 
 
     private void PlayDoorSound(IOpenable.OpenState state)
@@ -136,18 +133,5 @@ public class CarSound : MonoBehaviour
 
 
 
-    private void PlayParkingBreakSound(ParkingBreakState state)
-    {
-        switch (state)
-        {
-            case ParkingBreakState.SWITCHING_UP:
-                _audioSource.PlayOneShot(_parkingBreakOn);
-                break;
-            case ParkingBreakState.SWITCHING_DOWN:
-                _audioSource.PlayOneShot(_parkingBreakOff);
-                break;
-            default:
-                break;
-        }
-    }
+
 }
