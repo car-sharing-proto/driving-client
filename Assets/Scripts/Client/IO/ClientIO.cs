@@ -37,12 +37,14 @@ public class ClientIO :
     [Header("Other controls")]
     [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
+    [SerializeField] private KeyCode _switchViewKey = KeyCode.V;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.7f, 0.5f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f, 0.6f);
 
     private GameState _gameState;
     private InteractiveRaycast _interactiveRaycast;
+    private ViewSwitcher _viewSwitcher;
 
     // Car controls.
     public float Gas { get; private set; }
@@ -71,10 +73,12 @@ public class ClientIO :
     public bool Leave { get; private set; }
 
     public void Initialize(GameState gameState, 
-        InteractiveRaycast interactiveRaycast)
+        InteractiveRaycast interactiveRaycast, 
+        ViewSwitcher viewSwitcher)
     {
         this._gameState = gameState;
         this._interactiveRaycast = interactiveRaycast;
+        this._viewSwitcher = viewSwitcher;
 
         MouseController.SetVisibility(false);
     }
@@ -158,6 +162,14 @@ public class ClientIO :
         if (Input.GetKeyDown(_interactKey))
         {
             _interactiveRaycast.TryInteract();
+        }
+    }
+
+    private void HandleViewSwitching()
+    {
+        if (Input.GetKeyDown(_switchViewKey))
+        {
+            _viewSwitcher.Switch();
         }
     }
 }
