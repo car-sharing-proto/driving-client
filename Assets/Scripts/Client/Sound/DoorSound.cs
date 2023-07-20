@@ -13,6 +13,7 @@ public class DoorSound
     [SerializeField] private AudioClip _closeDoor;
     [SerializeField] private AudioClip _slamLid;
     [SerializeField] private AudioClip _gaslift;
+    [SerializeField] private AudioClip _openInfoSound;
 
     [SerializeField] private Door[] _doors;
     [SerializeField] private Door _hood;
@@ -24,6 +25,9 @@ public class DoorSound
     {
         _hood.OnStateChange += PlayLidSound;
         _trunk.OnStateChange += PlayLidSound;
+
+        _doorSystemAudioSource.clip = _openInfoSound;
+        _doorSystemAudioSource.loop = true;
 
         for (int i = 0; i < _doors.Length; i++)
         {

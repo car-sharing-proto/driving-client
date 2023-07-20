@@ -22,7 +22,11 @@ public class EngineSound
     {
         _engine = engine;
 
+        _workingSource.clip = _engineWorkSound;
+        _workingSource.loop = true;
         _engine.Starter.OnChangeState += PlayStarterSound;
+
+        _workingSource.Play();
     }
 
     public void Destroy()

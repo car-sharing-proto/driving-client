@@ -11,8 +11,6 @@ public class CarSound : MonoBehaviour
     [SerializeField] private ParkingBreakSound _parkingBreakSound;
     [SerializeField] private DoorSound _doorSound;
 
-    [SerializeField] private AudioSource _audioSource;
-
     private void Awake()
     {
         _engineSound.Initialize(_car.Engine);
