@@ -46,6 +46,9 @@ public class Bootstrap : MonoBehaviour
         _interactiveRaycast = 
             new InteractiveRaycast(rayCaster, _userController);
 
+        // View switcher set up.
+        _viewSwitcher.Initialize(_userController);
+
         // Client IO set up.
         _clientIO.Initialize(_gameState, _interactiveRaycast, _viewSwitcher);
         _clientUI.Initialize(_gameState, _interactiveRaycast);
@@ -59,5 +62,6 @@ public class Bootstrap : MonoBehaviour
         _interactiveRaycast.Update();
         _clientIO.Update();
         _userController.Update();
+        _viewSwitcher.Update();
     }
 }

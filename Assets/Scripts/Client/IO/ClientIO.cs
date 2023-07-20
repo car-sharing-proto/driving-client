@@ -85,6 +85,7 @@ public class ClientIO :
 
     public void Update()
     {
+        HandleViewSwitching();
         HandlePauseSwitch();
         HandlePlayerInput();
         HandleCarInput();
