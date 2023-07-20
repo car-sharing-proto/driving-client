@@ -6,6 +6,7 @@ public class CarSound : MonoBehaviour
 {
     [SerializeField] private EngineSound _engineSound;
     [SerializeField] private BlinkerSound _blinkerSound;
+    [SerializeField] private TransmissionSound _transmissionSound;
 
     [SerializeField] private AudioSource _doorSystemAudioSource;
     [SerializeField] private AudioSource _audioSource;
@@ -16,7 +17,6 @@ public class CarSound : MonoBehaviour
     [SerializeField] private AudioClip _closeDoor;
     [SerializeField] private AudioClip _slamLid;
     [SerializeField] private AudioClip _gaslift;
-    [SerializeField] private AudioClip _modeShift;
 
     [SerializeField] private Car _car;
 
@@ -26,18 +26,15 @@ public class CarSound : MonoBehaviour
 
     [SerializeField] private Controller[] _openControllers;
 
-    [SerializeField] private float _enginePitchMultiplier = 2.0f;
-    [SerializeField] private float _engineVolumeMultiplier = 2.0f;
-
-
 
     private void Awake()
     {
         _engineSound.Initialize(_car.Engine);
         _blinkerSound.Initialize(_car.TurnLights);
+        _transmissionSound.Initialize(_car.Transmission);
 
         _car.ParkingBreak.OnBreakSwitch += PlayParkingBreakSound;
-        _car.Transmission.OnModeChange += PlayTransmissionModeSound;
+       
         _hood.OnStateChange += PlayLidSound;
         _trunk.OnStateChange += PlayLidSound;
 
@@ -56,9 +53,9 @@ public class CarSound : MonoBehaviour
     {
         _engineSound.Destroy();
         _blinkerSound.Destroy();
+        _transmissionSound.Destroy();
 
         _car.ParkingBreak.OnBreakSwitch -= PlayParkingBreakSound;
-        _car.Transmission.OnModeChange -= PlayTransmissionModeSound;
         _hood.OnStateChange -= PlayLidSound;
         _trunk.OnStateChange -= PlayLidSound;
 
@@ -75,7 +72,7 @@ public class CarSound : MonoBehaviour
 
     private void Update()
     {
-       
+        _engineSound.Update();
     }
 
 
@@ -137,10 +134,7 @@ public class CarSound : MonoBehaviour
         }
     }
 
-    private void PlayTransmissionModeSound(TransmissionMode mode)
-    {
-        _audioSource.PlayOneShot(_modeShift, 2.0f);
-    }
+
 
     private void PlayParkingBreakSound(ParkingBreakState state)
     {
